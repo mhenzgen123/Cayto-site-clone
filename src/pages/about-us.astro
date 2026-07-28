@@ -1,0 +1,201 @@
+---
+import Base from "@/layouts/Base.astro";
+import Cta from "@/layouts/components/Cta.astro";
+
+// AI-Generated
+/** about-us.astro — dedicated About Us page with hero, values grid, operation
+ *  two-column section, security & compliance, and shared CTA.
+ */
+const cta = {
+  title: "Build a High-Performing Finance Team, Seamlessly.",
+  content:
+    "Ready to see how Cayto Group can strengthen your finance department — without the cost and friction of domestic hiring?",
+  button: {
+    enable: true,
+    label: "Schedule a Discovery Call",
+    link: "/contact",
+  },
+};
+
+const operationChecklist = [
+  "Holds recognized accounting credentials or is actively pursuing them.",
+  "Has been interviewed by at least two Cayto Principals.",
+  "Has passed a timed accounting exam with CPA-level questions.",
+  "Has passed reference checks and prior employer verification.",
+  "Has a Bachelor's Degree or above in Accounting or Finance.",
+  "Has four years minimum of relevant experience.",
+];
+
+const securityCards = [
+  {
+    title: "IT Integration",
+    body: "Every Cayto Group professional is onboarded into your company's existing IT infrastructure — the same tools, the same accounts, and the same security protocols as your domestic team. We work directly with your IT and cybersecurity departments during setup to ensure full compliance with your internal standards.",
+    bullets: null,
+  },
+  {
+    title: "Data Security",
+    body: null,
+    bullets: [
+      "All communication happens through your company-provisioned accounts (Slack, Teams, Skype, or equivalent)",
+      "Your Cayto professional adopts your company's data handling and access control policies from day one",
+      "Where client IT protocols don't fully cover the offshore context, Cayto Group provides supplementary solutions at no additional cost — including a secure file-sharing portal with MFA and password management tooling",
+    ],
+  },
+  {
+    title: "Background Screening",
+    body: "Every professional placed through Cayto Group has undergone reference checks, prior employer verification, and a full background screening before any client engagement begins. This is not optional — it is a standard step in our six-stage process.",
+    bullets: null,
+  },
+  {
+    title: "Billing & Data Sovereignty",
+    body: "Clients transact exclusively with Cayto Group LLC, a U.S.-based limited liability company. You receive a U.S. invoice, a W-9, and a fixed monthly rate. You never transact directly with overseas entities, and you retain full ownership of all financial data and work product.",
+    bullets: null,
+  },
+];
+// End AI-Generated
+---
+
+<Base
+  title="About Us | Cayto Group"
+  meta_title="About Us | Cayto Group"
+  description="Cayto Group was founded by two CFOs who discovered an untapped pipeline of highly qualified offshore accounting professionals — and built a firm to bring that advantage to other U.S. finance leaders."
+>
+  <!-- Who We Are — Hero -->
+  <!-- AI-Generated -->
+  <section class="section pb-[50px] bg-dot-grid border-y border-border">
+    <div class="container">
+      <div class="text-center">
+        <h1 class="font-bold">Who We Are</h1>
+      </div>
+      <div class="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
+          <p class="h5">Founded by CFOs, Not Recruiters</p>
+          <p class="mt-3 text-text">
+            Most staffing firms evaluate candidates by résumé and rate. Our
+            founders evaluate them the way a Controller would — by technical
+            depth, professional standards, and how they'll actually perform
+            inside a finance team. Every decision we make about sourcing,
+            vetting, and placement reflects that operating perspective.
+          </p>
+        </div>
+        <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
+          <p class="h5">Vision</p>
+          <p class="mt-3 text-text">
+            To be the most trusted source of offshore accounting talent for U.S.
+            finance leaders — not by volume, but by the quality and longevity of
+            every placement we make.
+          </p>
+        </div>
+        <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
+          <p class="h5">Mission</p>
+          <p class="mt-3 text-text">
+            To help CFOs and Controllers build high-performing, cost-effective
+            finance teams by connecting them with accounting professionals who
+            can genuinely integrate, contribute, and grow within their
+            organizations.
+          </p>
+        </div>
+        <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
+          <p class="h5">Quality</p>
+          <p class="mt-3 text-text">
+            We place professionals we would hire ourselves. Every candidate who reaches a client interview has passed our full six-stage screening process.
+          </p>
+        </div>
+        <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
+          <p class="h5">Security</p>
+          <p class="mt-3 text-text">
+            Financial data is sensitive. Every engagement is structured to meet the same IT and compliance standards your team operates under, with no exceptions.
+          </p>
+        </div>
+        <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
+          <p class="h5">Long-Term Partners</p>
+          <p class="mt-3 text-text">
+            We are not a transactional staffing agency. We succeed when our clients and their Cayto professionals build lasting working relationships.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- Our Operation -->
+  <!-- AI-Generated -->
+  <section class="section">
+    <div class="container">
+      <div class="mx-auto max-w-3xl text-center mb-10">
+        <h2 class="font-bold">Our Operation</h2>
+        <p class="mt-4 text-text">
+          Cayto Group professionals are based in Sri Lanka, where our local team oversees candidate sourcing, interviews, skills assessments, and background checks.
+        </p>
+      </div>
+      <div class="inset-panel rounded-xl bg-light p-8 md:p-12">
+        <p class="mb-6 font-semibold text-text-dark text-center">
+          Every professional placed through Cayto Group:
+        </p>
+        <ul class="grid gap-4 sm:grid-cols-2 list-none pl-0">
+          {
+            operationChecklist.map((item) => (
+              <li class="feature-card flex items-start gap-3 rounded-xl bg-white p-5">
+                <svg
+                  class="shrink-0 mt-0.5 text-primary"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <circle cx="10" cy="10" r="10" fill="currentColor" fill-opacity="0.12" />
+                  <path
+                    d="M5.5 10.25l3 3 6-6"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span class="text-text">{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- Security & Compliance -->
+  <!-- AI-Generated -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="text-center mb-8">
+        <h2 class="font-bold">Security and Compliance</h2>
+        <p class="mt-3 mx-auto max-w-xl text-text">
+          We understand that handing financial data access to an overseas professional is not a
+          trivial decision. Here is exactly how we handle it.
+        </p>
+      </div>
+      <div class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        {
+          securityCards.map((card) => (
+            <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
+              <p class="h5">{card.title}</p>
+              {card.body && <p class="mt-3 text-text">{card.body}</p>}
+              {card.bullets && (
+                <ul class="mt-3 list-none pl-0 space-y-2">
+                  {card.bullets.map((b) => (
+                    <li class="relative pl-5 text-text before:absolute before:left-0 before:top-[10px] before:h-2 before:w-2 before:rounded-full before:bg-primary before:content-['']">
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <Cta cta={cta} />
+</Base>

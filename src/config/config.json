@@ -1,0 +1,36 @@
+{
+  "site": {
+    "title": "Cayto Group",
+    "base_url": "https://caytogroup.com",
+    "base_path": "/",
+    "trailing_slash": false,
+    "favicon": "/images/favicon.png",
+    "logo": "/images/cayto-assets/logo.png",
+    "logo_width": "200",
+    "logo_height": "50",
+    "logo_text": "Cayto Group"
+  },
+  "settings": {
+    "pagination": 4,
+    "summary_length": 200
+  },
+  "nav_button": {
+    "enable": false,
+    "label": "Client Portal",
+    "link": "https://portal.caytogroup.com/"
+  },
+  "params": {
+    "contact_form_action": "#",
+    "footer_content": "Cayto Group specializes in deploying qualified offshore accounting professionals at roughly half the cost of what U.S. businesses would normally pay for an equivalent skillset.",
+    "copyright": "Copyright © 2026 [Cayto Group LLC](https://caytogroup.com). All Rights Reserved."
+  },
+  "metadata": {
+    "meta_author": "Cayto Group LLC",
+    "meta_image": "/images/cayto-assets/logo.png",
+    "meta_description": "Cayto Group provides highly skilled offshore accounting professionals at roughly half the cost of U.S. equivalents — vetted, dedicated, and ready to integrate with your team."
+  },
+  "google_tag_manager": {
+    "enable": false,
+    "gtm_id": "GTM-XXXXXX"
+  }
+}

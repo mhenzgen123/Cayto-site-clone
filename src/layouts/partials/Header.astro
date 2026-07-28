@@ -1,0 +1,159 @@
+---
+import Logo from "@/components/Logo.astro";
+import { nav_button } from "@/config/config.json";
+import menu from "@/config/menu.json";
+
+const pathname = Astro.url.pathname;
+
+export interface ChildNavigationLink {
+  name: string;
+  url: string;
+}
+
+export interface NavigationLink {
+  name: string;
+  url: string;
+  hasChildren?: boolean;
+  children?: ChildNavigationLink[];
+}
+
+const { main }: { main: NavigationLink[] } = menu;
+---
+
+<!-- AI-Generated: transition:persist keeps the header DOM node alive across ClientRouter soft
+     navigations, preventing the logo from briefly flashing at its 2x intrinsic size.
+     The script below re-evaluates the active nav link on every astro:page-load because
+     transition:persist freezes the server-rendered active state on first load. -->
+<header class="header" transition:persist>
+  <nav class="navbar container">
+    <!-- AI-Generated: spacer + flex-1 logo trick — the invisible spacer matches the
+         hamburger's width so the flex-1 logo div is bounded equally on both sides,
+         centering the logo without grid overrides that break during view transitions.
+         Both spacer and flex-1 collapse at md+ where the desktop flex layout takes over. -->
+    <div class="order-0 w-6 md:hidden" aria-hidden="true"></div>
+    <div class="order-0 flex-1 flex justify-center md:flex-1 md:justify-start">
+      <Logo />
+    </div>
+    <!-- End AI-Generated -->
+    <!-- navbar toggler -->
+    <input id="nav-toggle" type="checkbox" class="hidden" />
+    <label
+      id="show-button"
+      for="nav-toggle"
+      class="order-2 flex cursor-pointer items-center md:order-1 md:hidden"
+    >
+      <svg class="h-6 fill-current" viewBox="0 0 20 20">
+        <title>Menu Open</title>
+        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+      </svg>
+    </label>
+    <label
+      id="hide-button"
+      for="nav-toggle"
+      class="order-2 cursor-pointer items-center md:order-1"
+    >
+      <svg class="h-6 fill-current" viewBox="0 0 20 20">
+        <title>Menu Close</title>
+        <polygon
+          points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+          transform="rotate(45 10 10)"></polygon>
+      </svg>
+    </label>
+    <!-- /navbar toggler -->
+
+    <ul
+      id="nav-menu"
+      class="navbar-nav order-3 hidden w-full md:order-1 md:flex md:w-auto md:space-x-3"
+    >
+      {
+        main.map((menu) => (
+          <>
+            {menu.hasChildren ? (
+              <li class="nav-item nav-dropdown group relative">
+                <span class="nav-link inline-flex items-center">
+                  {menu.name}
+                  <svg class="h-4 w-4 fill-current" viewBox="0 0 20 20">
+                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                  </svg>
+                </span>
+                <ul class="nav-dropdown-list hidden group-hover:block md:invisible md:absolute md:block md:opacity-0 md:group-hover:visible md:group-hover:opacity-100">
+                  {menu.children?.map((child) => (
+                    <li class="nav-dropdown-item">
+                      <a
+                        href={child.url}
+                        class={`nav-dropdown-link block ${
+                          pathname === child.url && "nav-link-active"
+                        }`}
+                      >
+                        {child.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ) : (
+              <li class="nav-item">
+                <a
+                  href={menu.url}
+                  class={`nav-link block ${
+                    pathname === menu.url && "nav-link-active"
+                  }`}
+                >
+                  {menu.name}
+                </a>
+              </li>
+            )}
+          </>
+        ))
+      }
+      {
+        nav_button.enable && (
+          <div class="block md:hidden">
+            <a
+              class="btn btn-primary z-0 ml-auto py-[14px]"
+              href={nav_button.link}
+            >
+              {nav_button.label}
+            </a>
+          </div>
+        )
+      }
+    </ul>
+    {
+      nav_button.enable && (
+        <div class="order-1 ml-auto hidden items-center md:order-2 md:ml-0 md:flex md:min-w-[150px] lg:min-w-[200px]">
+          <a
+            class="btn btn-primary z-0 ml-auto py-[14px]"
+            href={nav_button.link}
+          >
+            {nav_button.label}
+          </a>
+        </div>
+      )
+    }
+    {/* AI-Generated: right-side flex-1 spacer — balances the flex-1 logo on the left so
+        the nav links sit in the true center of the navbar when the CTA button is disabled */}
+    {!nav_button.enable && (
+      <div class="order-2 hidden md:block md:flex-1" aria-hidden="true"></div>
+    )}
+  </nav>
+</header>
+
+<!-- AI-Generated: update active nav link on every navigation since transition:persist
+     freezes the server-rendered active state on the first page visited -->
+<script>
+  document.addEventListener("astro:page-load", () => {
+    // Strip trailing slash so "/about-us/" matches menu url "/about-us".
+    // Keep bare "/" intact via the fallback.
+    const pathname = window.location.pathname.replace(/\/$/, "") || "/";
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      const href = link.getAttribute("href");
+      if (href === pathname) {
+        link.classList.add("nav-link-active");
+      } else {
+        link.classList.remove("nav-link-active");
+      }
+    });
+  });
+</script>
+<!-- End AI-Generated -->

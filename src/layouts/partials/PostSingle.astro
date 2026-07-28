@@ -1,0 +1,44 @@
+---
+import { markdownify } from "@/lib/utils/textConverter";
+import { Image } from "astro:assets";
+import { render } from "astro:content";
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, image } = post.data;
+---
+
+<!-- AI-Generated: hero (image + title) in dot-grid, content in plain white — matches interior page pattern -->
+<section class="section pb-[50px] bg-dot-grid border-y border-border">
+  <div class="container">
+    <div class="row justify-center">
+      <div class="col-12 md:col-8 text-center">
+        {
+          image && (
+            <Image
+              src={image}
+              height={500}
+              width={1000}
+              alt={title}
+              class="rounded-lg"
+            />
+          )
+        }
+        <h1 set:html={markdownify(title)} class="h2 text-left my-6" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="row justify-center">
+      <div class="col-12 md:col-8">
+        <div class="content mb-16 text-left">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End AI-Generated -->

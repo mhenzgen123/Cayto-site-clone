@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@plugin "../tailwind-plugin/tw-theme.mjs";
+@plugin "../tailwind-plugin/tw-bs-grid.mjs";
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+
+@import "./safe.css";
+@import "./utilities.css";
+
+@layer base {
+  @import "./base.css";
+}
+
+@layer components {
+  @import "./components.css";
+  @import "./navigation.css";
+  @import "./buttons.css";
+}
+
+/* AI-Generated */
+/* --font-secondary must come AFTER all @import statements.
+ * PostCSS drops any @import that follows a non-@import rule (CSS spec violation).
+ * In production builds this silently killed @import "./utilities.css", preventing
+ * @utility font-secondary from being defined and leaving headings in Inter.
+ * CSS variables resolve lazily at browser render time, so placing :root here
+ * is safe — the var(--font-secondary) reference in utilities.css resolves correctly. */
+:root {
+  --font-secondary: "Newsreader", Georgia, serif;
+}
+/* End AI-Generated */

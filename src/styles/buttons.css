@@ -1,0 +1,43 @@
+.btn {
+  @apply inline-block font-primary font-semibold border px-7 py-[17px] leading-[18px] transition;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+/* AI-Generated */
+/*
+ * Primary button uses a 135deg gradient (primary → primary-container) per the
+ * Financial Architect spec. 4px radius — sharp, institutional, not pill-shaped.
+ * Shadow collapses on hover (pressed feel) while gradient deepens.
+ */
+.btn-primary {
+  @apply border-transparent z-[1] rounded-[4px] relative transition text-white;
+  background: linear-gradient(135deg, #1A7A94, #2196B5);
+  /* Teal color bloom at rest — tinted is defensible here since the button is teal */
+  box-shadow: 0 0 40px rgba(26, 122, 148, 0.15);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #125A6E, #1A7A94);
+  box-shadow: 0 0 24px rgba(26, 122, 148, 0.08);
+}
+/* End AI-Generated */
+
+/* AI-Generated */
+/*
+ * Outline button: ghost border at low opacity, text-dark for authority.
+ * Deepens on hover to signal affordance without heavy visual weight.
+ */
+.btn-outline-primary {
+  @apply relative text-text-dark bg-transparent rounded-[4px] transition;
+  border: 1px solid rgba(26, 122, 148, 0.3);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.btn-outline-primary:hover {
+  border-color: #1A7A94;
+  color: #1A7A94;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(26, 122, 148, 0.1);
+}
+/* End AI-Generated */

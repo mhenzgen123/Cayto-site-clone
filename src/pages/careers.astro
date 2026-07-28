@@ -1,0 +1,160 @@
+---
+import Base from "@/layouts/Base.astro";
+
+// AI-Generated
+/** careers.astro — dedicated Careers page with hero, Life at Cayto,
+ *  benefits grid, job openings, and shared CTA.
+ */
+const benefits = [
+  "Competitive USD-based salary",
+  "Performance-based bonuses",
+  "Exposure to global clients",
+  "Continuous learning and development opportunities",
+  "Flexible work hours with a 5-hour overlap of US time zones",
+  "Monthly team get-togethers and events",
+  "Structured quarterly training programs",
+  "Remote work options",
+  "Company laptop ownership after 2 years of service",
+  "Hybrid holiday calendar (including key Sri Lankan holidays)",
+];
+
+const openings = [
+  "Accounting Manager",
+  "Senior Accountant",
+  "Staff Accountant",
+  "Accounts Receivable Specialist",
+  "Accounts Payable Specialist",
+  "Financial Analyst",
+];
+
+// End AI-Generated
+---
+
+<Base
+  title="Careers | Cayto Group"
+  meta_title="Careers | Cayto Group"
+  description="Join Cayto Group and build world-class financial solutions for global partners. Competitive USD-based salaries, professional growth, and a collaborative culture."
+>
+  <!-- Hero -->
+  <!-- AI-Generated -->
+  <section class="section pb-[50px] bg-dot-grid border-y border-border">
+    <div class="container">
+      <div class="row text-center">
+        <div class="mx-auto lg:col-8">
+          <h1 class="font-bold">Careers at Cayto Group</h1>
+          <p class="mt-4">
+            At Cayto Group, we are constantly innovating and building world class
+            financial solutions for our global partners. If you're passionate about
+            making an impact, join our talented team today and take charge of your
+            future with us.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- Life at Cayto -->
+  <!-- AI-Generated -->
+  <section class="section">
+    <div class="container">
+      <div class="items-center gap-8 md:grid md:grid-cols-2">
+        <div>
+          <img
+            class="mx-auto rounded-xl"
+            src="/images/cayto-assets/cayto-team-photo.JPG"
+            alt="Cayto Group team"
+            width="538"
+            height="328"
+          />
+        </div>
+        <div class="mt-5 md:mt-0">
+          <h2 class="font-bold">Life at Cayto</h2>
+          <p class="mt-4 text-text">
+            Life at Cayto is fast-paced, collaborative, and built for growth.
+            You'll gain real exposure to international clients, work with modern
+            tools and systems, and grow your career in a dynamic US work
+            environment. If you're eager to learn, take ownership, and be part of
+            a driven team, this is where you level up.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- Our Benefits -->
+  <!-- AI-Generated -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="font-bold">Our Benefits</h2>
+        <p class="mt-3 mx-auto max-w-2xl text-text">
+          We take care of our people—because that's how great work happens. From
+          flexibility and global exposure to a supportive team culture, our
+          benefits are designed to help you grow, perform, and thrive.
+        </p>
+      </div>
+      <div class="inset-panel rounded-xl bg-light p-8 md:p-12">
+        <ul class="grid gap-4 sm:grid-cols-2 list-none pl-0">
+          {
+            benefits.map((item) => (
+              <li class="feature-card flex items-start gap-3 rounded-xl bg-white p-5">
+                <svg
+                  class="shrink-0 mt-0.5 text-primary"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <circle cx="10" cy="10" r="10" fill="currentColor" fill-opacity="0.12" />
+                  <path
+                    d="M5.5 10.25l3 3 6-6"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span class="text-text">{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- Job Openings -->
+  <!-- AI-Generated -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-12">
+        <h2 class="font-bold">Our Job Openings</h2>
+      </div>
+      <div class="mx-auto max-w-3xl">
+        <div class="inset-panel rounded-xl bg-light p-8 md:p-12">
+          <ul class="space-y-4 list-none pl-0">
+            {
+              openings.map((role) => (
+                <li class="flex items-center justify-between gap-4 rounded-xl bg-white p-5 feature-card">
+                  <span class="font-semibold text-text-dark">{role}</span>
+                  <a
+                    class="btn btn-primary text-sm shrink-0"
+                    href={`mailto:talent@caytogroup.com?subject=Application%20for%20${encodeURIComponent(role)}&body=${encodeURIComponent("Please attach your resume and hit send to apply.")}`}
+                  >
+                    Apply Now
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+</Base>

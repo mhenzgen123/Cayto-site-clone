@@ -1,0 +1,11 @@
+@utility shadow {
+  box-shadow: 0 12px 24px -6px rgba(45, 67, 121, 0.1);
+}
+
+/* AI-Generated */
+/* .font-secondary — Newsreader serif for headings. Defined here (not via tw-theme)
+ * because Newsreader is loaded via direct @import, not Astro's font provider. */
+@utility font-secondary {
+  font-family: var(--font-secondary);
+}
+/* End AI-Generated */

@@ -1,0 +1,35 @@
+---
+import { markdownify } from "@/lib/utils/textConverter";
+
+// AI-Generated
+/** Cta.astro — full-width centered call-to-action section.
+ *  Image prop is accepted but intentionally not rendered:
+ *  the available CTA image is a washed-out background texture
+ *  designed for CSS overlay use, not as a foreground img element.
+ *  A centered typographic CTA is cleaner for this B2B context.
+ */
+const { cta } = Astro.props;
+// End AI-Generated
+---
+
+{/* AI-Generated — centered layout; no image column */}
+<section class="section px-4">
+  <div class="section container rounded-xl shadow bg-light">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-bold">{cta?.title}</h2>
+      <p class="mt-4 text-text" set:html={markdownify(cta?.content)} />
+      {
+        cta.button.enable && (
+          <a
+            class="btn btn-primary mt-6 inline-block"
+            href={cta.button.link}
+            rel={cta.button.rel}
+          >
+            {cta.button.label}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>
+{/* End AI-Generated */}

@@ -1,0 +1,278 @@
+name: Cloudflare Pages Deployment Status
+on:
+  push:
+    branches: ["**"]
+
+jobs:
+  watch-deployment:
+    name: Monitor Deployment in Cloudflare
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      CF_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      # Must match your Cloudflare Pages project name exactly
+      CF_PROJECT_NAME: cayto-group
+
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Wait for Cloudflare to register the push
+        run: |
+          Write-Host ""
+          Write-Host "=========================================="
+          Write-Host "  Cloudflare Pages Deployment Monitor"
+          Write-Host "=========================================="
+          Write-Host ""
+          Write-Host "A push to '${{ github.ref_name }}' was detected."
+          Write-Host "Cloudflare is connected to this repo and will automatically"
+          Write-Host "start a new build. We need to give it a moment to register"
+          Write-Host "the push before we can find the deployment via the API."
+          Write-Host ""
+          Write-Host "Waiting 20 seconds before polling..."
+          Start-Sleep -Seconds 20
+          Write-Host "Done waiting. Starting to poll the Cloudflare API."
+
+      - name: Poll until deployment completes
+        id: cf_status
+        run: |
+          $commitSha   = "${{ github.sha }}"
+          $branch      = "${{ github.ref_name }}"
+          $maxAttempts = 40   # 40 × 15 s = 10 min ceiling
+          $apiBase     = "https://api.cloudflare.com/client/v4/accounts/${env:CF_ACCOUNT_ID}/pages/projects/${env:CF_PROJECT_NAME}/deployments?per_page=25"
+          $headers     = @{ Authorization = "Bearer ${env:CF_API_TOKEN}"; "Content-Type" = "application/json" }
+
+          $deploymentUrl = ""
+          $deploymentId  = ""
+          $finalStatus   = ""
+          $failedStage   = ""
+
+          Write-Host ""
+          Write-Host "Project : $env:CF_PROJECT_NAME"
+          Write-Host "Branch  : $branch"
+          Write-Host "Commit  : $commitSha"
+          Write-Host "Timeout : $($maxAttempts * 15) seconds ($maxAttempts attempts × 15 s)"
+          Write-Host ""
+          Write-Host "Cloudflare build stages (in order):"
+          Write-Host "  queued → initialize → clone_repo → build → deploy → success"
+          Write-Host ""
+
+          for ($attempt = 1; $attempt -le $maxAttempts; $attempt++) {
+            $elapsed = ($attempt - 1) * 15
+            Write-Host "--- Poll $attempt / $maxAttempts (${elapsed}s elapsed) ---"
+            Write-Host "Querying the Cloudflare API for recent deployments..."
+
+            try {
+              $response = Invoke-RestMethod -Uri $apiBase -Headers $headers -Method Get
+            } catch {
+              Write-Host ""
+              Write-Error "Cloudflare API request failed: $($_.Exception.Message)"
+              Write-Host ""
+              Write-Host "Possible causes:"
+              Write-Host "  - CLOUDFLARE_API_TOKEN secret is missing or expired"
+              Write-Host "  - CLOUDFLARE_ACCOUNT_ID secret is wrong"
+              Write-Host "  - The API token does not have 'Cloudflare Pages: Read' permission"
+              Write-Host ""
+              Write-Host "Check your repository secrets at:"
+              Write-Host "  Settings → Secrets and variables → Actions"
+              exit 1
+            }
+
+            $deployment = $response.result |
+              Where-Object { $_.deployment_trigger.metadata.commit_hash -eq $commitSha } |
+              Select-Object -First 1
+
+            if (-not $deployment) {
+              Write-Host "No deployment found yet matching commit $commitSha."
+              Write-Host "This is normal — Cloudflare may still be queuing the build."
+              Write-Host "Waiting 15 seconds before trying again..."
+              Write-Host ""
+              Start-Sleep -Seconds 15
+              continue
+            }
+
+            $stage        = $deployment.latest_stage.name   ?? "unknown"
+            $status       = $deployment.latest_stage.status ?? "unknown"
+            $deploymentId = $deployment.id ?? ""
+
+            # Prefer the stable alias URL (production domain on main, branch alias on feature branches)
+            # over the commit-specific deployment URL
+            $aliases       = @($deployment.aliases)
+            $deploymentUrl = if ($aliases.Count -gt 0) { $aliases[0] } else { $deployment.url ?? "" }
+
+            $stageDesc = switch ($stage) {
+              "queued"      { "Deployment is queued and waiting for a build runner" }
+              "initialize"  { "Cloudflare is setting up the build environment" }
+              "clone_repo"  { "Cloudflare is cloning the repository" }
+              "build"       { "Running the build command (npm run build)" }
+              "deploy"      { "Build succeeded — uploading assets to the CDN" }
+              "success"     { "Deployment complete and live" }
+              default       { "Stage: $stage" }
+            }
+
+            Write-Host "Found deployment: $deploymentId"
+            Write-Host "Current stage   : $stage — $stageDesc"
+            Write-Host "Stage status    : $status"
+            if ($deploymentUrl) {
+              Write-Host "URL             : $deploymentUrl"
+            }
+
+            if ($status -eq "success") {
+              Write-Host ""
+              Write-Host "Deployment completed successfully!"
+              $finalStatus = "success"
+              break
+            } elseif ($status -in @("failure", "canceled")) {
+              Write-Host ""
+              Write-Host "::error::Deployment $status at stage '$stage'. Check the build logs below for details."
+              $finalStatus = $status
+              $failedStage = $stage
+              break
+            }
+
+            Write-Host "Still in progress. Waiting 15 seconds before checking again..."
+            Write-Host ""
+            Start-Sleep -Seconds 15
+          }
+
+          if (-not $finalStatus) {
+            Write-Host ""
+            Write-Host "::warning::Timed out after $($maxAttempts * 15) s — the deployment is still running."
+            Write-Host "You can check its status directly in the Cloudflare dashboard."
+            $finalStatus = "timeout"
+          }
+
+          "deployment_url=$deploymentUrl" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "deployment_id=$deploymentId"   | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "status=$finalStatus"           | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          "failed_stage=$failedStage"     | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      - name: Write job summary
+        if: always()
+        run: |
+          $status = "${{ steps.cf_status.outputs.status }}"
+          $url    = "${{ steps.cf_status.outputs.deployment_url }}"
+          $stage  = "${{ steps.cf_status.outputs.failed_stage }}"
+          $commit = "${{ github.sha }}"
+
+          $icon = switch ($status) {
+            "success"  { ":white_check_mark:" }
+            "failure"  { ":x:" }
+            "canceled" { ":no_entry_sign:" }
+            "timeout"  { ":hourglass_flowing_sand:" }
+            default    { ":question:" }
+          }
+
+          $isMain     = "${{ github.ref_name }}" -eq "main"
+          $urlLabel   = if ($isMain) { "Production URL" } else { "Preview URL" }
+          $urlDisplay = if ($url) { "[$url]($url)" } else { "_(not available)_" }
+          $stageNote  = if ($stage -and $status -ne "success") { " (failed at stage: **$stage**)" } else { "" }
+
+          @"
+          ## ${icon} Cloudflare Pages Deployment
+
+          | Field        | Value |
+          |--------------|-------|
+          | Status       | **${status}**${stageNote} |
+          | ${urlLabel}  | ${urlDisplay} |
+          | Branch       | ``${{ github.ref_name }}`` |
+          | Commit       | ``${commit}`` |
+          "@ | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+
+      - name: Fetch deployment logs
+        if: always() && steps.cf_status.outputs.deployment_id != ''
+        id: cf_logs
+        run: |
+          $deploymentId = "${{ steps.cf_status.outputs.deployment_id }}"
+          $status       = "${{ steps.cf_status.outputs.status }}"
+          $logsUrl      = "https://api.cloudflare.com/client/v4/accounts/${env:CF_ACCOUNT_ID}/pages/projects/${env:CF_PROJECT_NAME}/deployments/${deploymentId}/history/logs"
+          $headers      = @{ Authorization = "Bearer ${env:CF_API_TOKEN}"; "Content-Type" = "application/json" }
+
+          Write-Host ""
+          Write-Host "Fetching build logs from Cloudflare for deployment: $deploymentId"
+          Write-Host "(These are the raw logs from the Cloudflare build runner — same as what"
+          Write-Host " you would see in the Cloudflare dashboard under Pages → Deployments.)"
+          Write-Host ""
+
+          try {
+            $response = Invoke-RestMethod -Uri $logsUrl -Headers $headers -Method Get
+            $logLines = @($response.result.data)
+            Write-Host "Successfully retrieved $($logLines.Count) log lines."
+          } catch {
+            Write-Host "::warning::Could not fetch deployment logs: $($_.Exception.Message)"
+            Write-Host "The deployment status was recorded above — logs are unavailable but the result is still valid."
+            $logLines = @()
+          }
+
+          # --- Workflow log (collapsible group) ---
+          Write-Host ""
+          Write-Host "::group::Cloudflare build logs ($($logLines.Count) lines) — click to expand"
+          if ($logLines.Count -eq 0) {
+            Write-Host "(no log lines returned by the API)"
+          } else {
+            foreach ($entry in $logLines) {
+              Write-Host $entry.line
+            }
+          }
+          Write-Host "::endgroup::"
+          Write-Host ""
+
+          # --- Job summary (collapsible details block) ---
+          # Strip ANSI escape sequences before writing to the summary — GitHub's markdown
+          # renderer treats them as literal characters, producing garbage like "0[34m".
+          if ($logLines.Count -gt 0) {
+            $logText = ($logLines | ForEach-Object {
+              $_.line -replace '\x1B\[[0-9;]*[A-Za-z]', ''
+            }) -join "`n"
+          } else {
+            $logText = "(no log lines returned)"
+          }
+
+          @"
+          <details>
+          <summary>Build logs ($($logLines.Count) lines)</summary>
+
+          ``````
+          $logText
+          ``````
+
+          </details>
+          "@ | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append
+
+      - name: Fail if deployment did not succeed
+        if: steps.cf_status.outputs.status != 'success'
+        run: |
+          $status = "${{ steps.cf_status.outputs.status }}"
+          $stage  = "${{ steps.cf_status.outputs.failed_stage }}"
+          $url    = "${{ steps.cf_status.outputs.deployment_url }}"
+
+          Write-Host ""
+          Write-Host "=========================================="
+          Write-Host "  Deployment did not succeed"
+          Write-Host "=========================================="
+          Write-Host ""
+
+          if ($status -eq "timeout") {
+            Write-Host "The deployment is still running after the maximum wait time."
+            Write-Host "It may still complete successfully — check the Cloudflare dashboard."
+            Write-Host "This job is being marked as failed so the PR/commit shows a warning."
+          } elseif ($status -eq "canceled") {
+            Write-Host "The deployment was canceled in Cloudflare before it could finish."
+            Write-Host "This may have been triggered manually in the Cloudflare dashboard."
+          } else {
+            Write-Host "The Cloudflare build failed at stage: '$stage'"
+            Write-Host "Expand the 'Cloudflare build logs' group above to see the full output."
+            Write-Host "Look for lines starting with 'error' or 'Error' near the bottom of the log."
+          }
+
+          Write-Host ""
+          if ($url) {
+            Write-Host "Deployment URL (may be partial): $url"
+          }
+          Write-Host ""
+
+          Write-Error "Cloudflare Pages deployment $status$(if ($stage) { " at stage '$stage'" })"
+          exit 1
