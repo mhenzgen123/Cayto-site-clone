@@ -1,0 +1,94 @@
+---
+// AI-Generated
+/** Testimonials — three client testimonial cards.
+ *  Props: heading, accent ("primary" | "accent") controls the card top border.
+ *  Data is hardcoded because it is stable brand content, consistent with how
+ *  the original pages carried it inline.
+ */
+interface Props {
+  heading?: string;
+  accent?: "primary" | "accent";
+}
+const { heading = "What Our Clients Say", accent = "primary" } = Astro.props;
+const borderClass = accent === "accent" ? "border-accent" : "border-primary";
+const quoteClass = accent === "accent" ? "text-accent" : "text-primary";
+
+const testimonials = [
+  {
+    quote:
+      "Their work has been so impressive that we have added two more people to our accounting team to build out the team. They're critical to how we're growing our finance department.",
+    name: "Eric Allington",
+    title: "SVP Finance",
+    company: "Bravo Store Systems",
+    photo: "/images/people/Eric-Allington-SVP-Finance-1.jpg",
+    logo: "/images/logos/Bravo-Store.jpg",
+  },
+  {
+    quote:
+      "Not only are the individuals provided by Cayto highly skilled and experienced in their respective fields, but they also demonstrate exceptional professionalism and work ethic. Their commitment to excellence has greatly contributed to the success of our accounting team.",
+    name: "Jill Espinola",
+    title: "VP of Accounting",
+    company: "OluKai",
+    photo: "/images/people/Jill-Espinola-VP-of-Accounting.jpg",
+    logo: "/images/logos/olukai.jpg",
+  },
+  {
+    quote:
+      "Cayto Group has shown that offshore accounting staffing is far more than a stopgap — it can be a true strategic advantage. Their professionalism, responsiveness, and capacity to deliver measurable process improvements have made them an invaluable extension of our finance function.",
+    name: "Craig Dais",
+    title: "CFO",
+    company: "Navidea",
+    photo: "/images/people/Craig-Dais-CFO.png",
+    logo: "/images/logos/navidea-1.jpg",
+  },
+];
+// End AI-Generated
+---
+
+<!-- AI-Generated -->
+<section class="section bg-dot-grid">
+  <div class="container">
+    <div class="mb-12 text-center">
+      <h2 class="font-bold">{heading}</h2>
+    </div>
+    <div class="grid gap-8 md:grid-cols-3">
+      {
+        testimonials.map((t) => (
+          <div
+            class={`testimonial-card flex flex-col rounded-xl border-t-4 bg-white p-8 ${borderClass}`}
+          >
+            <p
+              class={`text-6xl font-bold ${quoteClass} mb-2 leading-none select-none`}
+              aria-hidden="true"
+            >
+              &ldquo;
+            </p>
+            <p class="text-text flex-1 leading-relaxed">{t.quote}</p>
+            <div class="mt-8 flex items-center justify-between gap-4">
+              <div class="flex items-center gap-4">
+                <img
+                  src={t.photo}
+                  width="56"
+                  height="56"
+                  alt={t.name}
+                  class="h-14 w-14 shrink-0 rounded-full object-cover"
+                />
+                <div>
+                  <p class="text-text-dark font-bold">{t.name}</p>
+                  <p class="text-text text-sm">{t.title}</p>
+                  <p class="text-text/60 text-sm">{t.company}</p>
+                </div>
+              </div>
+              <img
+                src={t.logo}
+                alt={t.company}
+                class="max-h-[36px] w-auto shrink-0 object-contain opacity-70"
+              />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+<!-- End AI-Generated -->

@@ -2,21 +2,24 @@
 
 ## What Is This?
 
-A marketing and sales website for **Cayto Group LLC**, a company that deploys qualified offshore accounting professionals at roughly half the cost of U.S. equivalents.
+A marketing and sales website for **Cayto Group LLC**, a company that builds and runs finance functions for U.S. companies through two service lines: **Dedicated Professionals** (offshore accounting talent embedded on a client's team, managed by the client) and **Managed Accounting** (Cayto's own team runs a client's books end to end on an AI-native platform). Both lines run at roughly half the cost of the onshore equivalent.
 
-The site is the primary digital presence for prospecting and trust-building with accounting departments, CFOs, and Controllers who are exploring offshore staffing solutions.
+The site is the primary digital presence for prospecting and trust-building with two distinct buyers: finance leaders who need more capacity on a team they already run, and owners/operators who have no one leading accounting at all.
 
 ---
 
 ## Who Uses It?
 
 ### Primary Users
-- **CFOs and Controllers** — decision-makers evaluating offshore accounting staffing
+
+- **CFOs, Controllers, and VP Finance** — decision-makers with an existing finance function evaluating offshore staffing to add capacity (Dedicated Professionals)
+- **Owners, CEOs, and Operations leads** — companies with no one leading accounting, evaluating an outcome-based service (Managed Accounting)
 - **Accounting Department Heads** — managing teams and budgets
 - **Finance Teams** — looking for staffing resources and cost-saving opportunities
-- **Anyone researching offshore accounting** — searching for alternatives to expensive onshore talent
+- **Anyone researching offshore accounting or outsourced bookkeeping** — searching for alternatives to expensive onshore talent
 
 ### Secondary Users
+
 - Cayto Group sales team — using the site as a prospecting tool
 - Internally — reference for company positioning and messaging
 
@@ -33,15 +36,18 @@ The site is the primary digital presence for prospecting and trust-building with
 ## Scope
 
 ### In Scope
+
 - Marketing presence (hero, value proposition, trust signals)
 - Company information (about us, mission, values, team)
-- Service overview (what we do, how the vetting process works, what talent tiers we offer)
+- Dedicated Professionals overview (what we do, how the vetting process works, what talent tiers we offer)
+- Managed Accounting overview (full-cycle bookkeeping through financial statements, AI-enabled delivery, published pricing, the Caytava platform partnership)
 - Careers page (employer brand, benefits, job openings for Sri Lanka-based talent)
 - Client testimonials and logo social proof
-- FAQ and contact page (Calendly scheduling + email contact cards)
+- FAQ and contact page (two Calendly event types, one per service line, plus email contact cards)
 - Blog (thought leadership on accounting staffing trends)
 
 ### Out of Scope
+
 - CMS integration (content managed directly in Markdown/Astro)
 - Multi-language support
 - Complex interactivity (single-page apps, heavy JavaScript)
@@ -59,6 +65,7 @@ The site is the primary digital presence for prospecting and trust-building with
 ## Brand & Tone
 
 **Professional, trustworthy, approachable.** The audience is CFOs and Controllers — busy, skeptical people evaluating a service that impacts their budget and staffing. The site should:
+
 - Demonstrate expertise and vetting rigor
 - Build confidence through client logos and testimonials
 - Use clear, jargon-free language
@@ -93,6 +100,7 @@ The site is the primary digital presence for prospecting and trust-building with
 3. **Process Clarity:** 6-step vetting process (Screening → Assessment → Communication → Validation → Verification → Onboarding)
 4. **Talent Quality:** Entry, Mid, Senior level professionals with relevant certifications
 5. **Security & Compliance:** IT integration, data security, background screening, billing sovereignty
+6. **AI-Enabled Delivery:** Automation handles the busywork, humans hold the judgment and the accountability
 
 ---
 

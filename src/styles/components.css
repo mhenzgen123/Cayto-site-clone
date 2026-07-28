@@ -308,6 +308,60 @@
   @apply max-h-screen;
 }
 
+/* AI-Generated */
+/*
+ * .bg-accent-panel — full-bleed navy band, used at most once per page and only
+ * on the Managed Accounting line. This is the single strongest visual signal
+ * that the visitor is looking at a different product than the staffing line.
+ * The dot grid is inverted to white-on-navy at low opacity so the texture
+ * language carries over from .bg-dot-grid.
+ */
+.bg-accent-panel {
+  background-color: #000a48;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='1' cy='1' r='1.5' fill='%23ffffff' fill-opacity='0.06'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  color: #ffffff;
+}
+
+.bg-accent-panel h1,
+.bg-accent-panel h2,
+.bg-accent-panel h3,
+.bg-accent-panel h4,
+.bg-accent-panel h5,
+.bg-accent-panel .h5 {
+  color: #ffffff;
+}
+
+.bg-accent-panel p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.bg-accent-panel a:not(.btn) {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/*
+ * .pricing-card — pricing tier card. Same ambient-shadow language as
+ * .feature-card; the featured tier gets a navy top edge rather than a scale
+ * transform, per the no-hover-scaling rule.
+ */
+.pricing-card {
+  @apply rounded-xl bg-white p-8 transition-all duration-200 ease-in-out;
+  box-shadow: 0 0 40px rgba(25, 28, 29, 0.04);
+}
+
+.pricing-card:hover {
+  box-shadow: 0 0 40px rgba(25, 28, 29, 0.08);
+}
+
+.pricing-card--featured {
+  @apply border-t-4 border-accent;
+  box-shadow: 0 0 40px rgba(0, 10, 72, 0.1);
+}
+/* End AI-Generated */
+
 /* content style */
 .content {
   @apply prose max-w-none;

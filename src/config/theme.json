@@ -4,6 +4,8 @@
       "theme_color": {
         "primary": "#1A7A94",
         "primary-container": "#2196B5",
+        "accent": "#000A48",
+        "accent-container": "#0B2472",
         "body": "#F7F9FA",
         "border": "#C8D8DE",
         "light": "#EAF2F5"

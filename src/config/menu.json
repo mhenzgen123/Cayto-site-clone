@@ -1,84 +1,45 @@
 {
   "main": [
+    { "name": "Home", "url": "/" },
     {
-      "name": "Home",
-      "url": "/"
+      "name": "Services",
+      "url": "#",
+      "hasChildren": true,
+      "children": [
+        { "name": "Managed Accounting", "url": "/managed-accounting" },
+        { "name": "Dedicated Professionals", "url": "/staffing" }
+      ]
     },
-    {
-      "name": "About Us",
-      "url": "/about-us"
-    },
-    {
-      "name": "Placement Process",
-      "url": "/our-services"
-    },
-    {
-      "name": "Blog",
-      "url": "/blog"
-    },
-    {
-      "name": "Careers",
-      "url": "/careers"
-    },
-    {
-      "name": "Contact",
-      "url": "/contact"
-    }
+    { "name": "About Us", "url": "/about-us" },
+    { "name": "Blog", "url": "/blog" },
+    { "name": "Careers", "url": "/careers" },
+    { "name": "Contact", "url": "/contact" }
   ],
   "footer": [
     {
       "name": "Quick Links",
       "menu": [
-        {
-          "text": "Home",
-          "url": "/"
-        },
-        {
-          "text": "About Us",
-          "url": "/about-us"
-        },
-        {
-          "text": "Blog",
-          "url": "/blog"
-        },
-        {
-          "text": "Careers",
-          "url": "/careers"
-        },
-        {
-          "text": "Client Portal",
-          "url": "https://portal.caytogroup.com/"
-        }
+        { "text": "Home", "url": "/" },
+        { "text": "About Us", "url": "/about-us" },
+        { "text": "Blog", "url": "/blog" },
+        { "text": "Careers", "url": "/careers" },
+        { "text": "Client Portal", "url": "https://portal.caytogroup.com/" }
       ]
     },
     {
       "name": "Services & Info",
       "menu": [
-        {
-          "text": "Placement Process",
-          "url": "/our-services"
-        },
-        {
-          "text": "FAQ",
-          "url": "/faq"
-        },
-        {
-          "text": "Privacy Policy",
-          "url": "/privacy-policy"
-        },
-        {
-          "text": "Terms & Conditions",
-          "url": "/terms-conditions"
-        }
+        { "text": "Managed Accounting", "url": "/managed-accounting" },
+        { "text": "Dedicated Professionals", "url": "/staffing" },
+        { "text": "FAQ", "url": "/faq" },
+        { "text": "Privacy Policy", "url": "/privacy-policy" },
+        { "text": "Terms & Conditions", "url": "/terms-conditions" }
       ]
     },
     {
       "name": "Contact",
       "menu": [
-        {
-          "text": "info@caytogroup.com",
-          "url": "mailto:info@caytogroup.com"
-        },
+        { "text": "info@caytogroup.com", "url": "mailto:info@caytogroup.com" },
         {
           "text": "talent@caytogroup.com",
           "url": "mailto:talent@caytogroup.com"

@@ -29,7 +29,8 @@ src/
 ├── pages/              # Route-based pages (.astro files)
 │   ├── index.astro     # Homepage
 │   ├── about-us.astro  # About Us page
-│   ├── our-services.astro  # Placement Process (was Services)
+│   ├── managed-accounting.astro  # Managed Accounting service line
+│   ├── staffing.astro      # Dedicated Professionals (was our-services.astro)
 │   ├── careers.astro       # Careers page
 │   ├── contact.astro
 │   ├── 404.astro
@@ -94,22 +95,26 @@ src/
 ## Common Tasks
 
 ### Add a Blog Post
+
 1. Create `src/content/blog/my-post.md`
 2. Include frontmatter: `title`, `description`, `date`, `image`
 3. Sharp auto-optimizes images at build time
 
 ### Update Config
+
 - **Site metadata:** `src/config/config.json`
 - **Fonts/colors:** `src/config/theme.json`
 - **Navigation:** `src/config/menu.json`
 - **Socials:** `src/config/social.json`
 
 ### Add a New Page
+
 1. Create `src/pages/my-page.astro` for rich component layouts
-2. *Or* create `src/content/pages/my-page.md` + `[regular].astro` for generic markdown
+2. _Or_ create `src/content/pages/my-page.md` + `[regular].astro` for generic markdown
 3. Update `src/config/menu.json` if nav link needed
 
 ### Image Guidelines
+
 - Place in `public/images/`
 - Use descriptive names: `client-logo-olukai.png`, `hero-trust-badge.jpg`, not `image1.png`
 - Sharp handles compression and format conversion automatically
@@ -131,3 +136,5 @@ Feature branch → PR to main → Cloudflare preview → merge to main → auto-
 - Image optimization is automatic via Sharp — don't pre-resize
 - Contact page uses email cards, not a form (Calendly is primary CTA; embed disabled on localhost)
 - Pricing page removed entirely (pricing.astro, pricing.md, and pricing PDF deleted; `/pricing` returns 404)
+- Two service lines. Teal (#1A7A94) is the staffing accent and shared chrome; navy (#000A48, token: accent) is reserved for Managed Accounting. Do not repaint global elements.
+- Nav dropdown classes (.nav-dropdown-list / -item / -link) are styled in navigation.css. Header.astro renders them for any menu entry with hasChildren:true.

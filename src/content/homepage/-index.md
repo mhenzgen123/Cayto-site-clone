@@ -1,7 +1,7 @@
 ---
 banner:
-  title: "Top-Tier Accountants\nFraction of the Cost"
-  content: "Cayto Group deploys fully vetted, background-screened accounting & finance professionals exclusively to your team — dedicated to your operations, integrated with your systems, at less than half the cost of an equivalent U.S. hire."
+  title: "Top-Tier Accounting.\nFraction of the Cost."
+  content: "Two ways to strengthen your finance function. Put a dedicated, fully vetted accounting professional on your team — or hand us the books entirely and get clean financials every month. Both at roughly half the cost of doing it onshore."
   button:
     enable: true
     label: "Schedule a Discovery Call"
@@ -16,29 +16,24 @@ feature:
       content: "Over 70% of Cayto professionals have Big 4 accounting experience"
     - name: "Thorough Vetting"
       icon: "/images/icons/checkmark-circle.svg"
-      content: "Professionals are interviewed, skills-tested, and reference & background checked before placement"
-    - name: "Dedicated Professionals"
+      content: "Every professional is interviewed, skills-tested, and reference & background checked before they touch client work"
+    - name: "U.S. Oversight"
       icon: "/images/icons/user-clock.svg"
-      content: "Dedicated professionals operating as regular employees on your team — not shared with other Cayto clients"
+      content: "A U.S.-based principal is accountable for every engagement — you always have someone in your time zone to call"
     - name: "Cost Savings"
       icon: "/images/icons/icon-savings.svg"
-      content: "Annual cost savings of 65%+ compared to equivalent U.S. talent — fully burdened, no benefits required"
-    - name: "14-Day Guarantee"
-      icon: "/images/icons/love.svg"
-      content: "Unsatisfied within the first 14 days? Replace or cancel at no charge"
+      content: "Roughly half the cost of the onshore equivalent — fully burdened, no benefits, no recruiting fees"
+    - name: "AI-Enabled Delivery"
+      icon: "/images/icons/speedometer.svg"
+      content: "Our teams work on modern, AI-native tooling — less manual keying, faster closes, fewer errors to chase"
     - name: "Flexible Contracts"
       icon: "/images/icons/icon-contract.svg"
-      content: "3-month initial contracts — month to month thereafter"
-
-# workflow
-workflow:
-  title: "How We Work"
-  description: "From your first call to an active professional on your team — most engagements are fully onboarded within 3–4 weeks. Our four-stage process is designed to be low-effort for you and high-precision in outcome."
+      content: "Three-month initial term, then month to month. No annual lock-in"
 
 # call_to_action
 call_to_action:
-  title: Build a High-Performing Finance Team, Seamlessly.
-  content: "Integrate dedicated, skilled accounting professionals into your team. Cayto Group delivers vetted talent, tailored to your needs, ready to make an immediate impact."
+  title: Build a High-Performing Finance Function.
+  content: "Whether you need a dedicated professional on your team or want the books handled entirely, we'll tell you honestly which fits — and what it costs."
   button:
     enable: true
     label: "Start the Conversation"

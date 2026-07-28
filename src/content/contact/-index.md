@@ -1,7 +1,7 @@
 ---
 title: "Book an Appointment"
 meta_title: "Contact Us | Cayto Group"
-description: "We're here to make things easy. Book a quick call with our team or reach out directly — whether you have questions, need a demo, or want to discuss a custom solution."
+description: "Tell us where things stand and we'll tell you honestly which service fits — a dedicated professional on your team, or managed accounting handled end to end. Calls run 15 to 30 minutes."
 draft: false
 info:
   title: Get in Touch

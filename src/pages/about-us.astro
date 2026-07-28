@@ -48,7 +48,7 @@ const securityCards = [
   },
   {
     title: "Billing & Data Sovereignty",
-    body: "Clients transact exclusively with Cayto Group LLC, a U.S.-based limited liability company. You receive a U.S. invoice, a W-9, and a fixed monthly rate. You never transact directly with overseas entities, and you retain full ownership of all financial data and work product.",
+    body: "Clients transact exclusively with Cayto Group LLC, a U.S.-based limited liability company. You receive a U.S. invoice, a W-9, and a fixed monthly rate. You never transact directly with overseas entities, and you retain full ownership of all financial data and work product. Clients on Managed Accounting subscribe to the Caytava platform separately and directly.",
     bullets: null,
   },
 ];
@@ -62,15 +62,21 @@ const securityCards = [
 >
   <!-- Who We Are — Hero -->
   <!-- AI-Generated -->
-  <section class="section pb-[50px] bg-dot-grid border-y border-border">
+  <section class="section bg-dot-grid pb-[50px]">
     <div class="container">
       <div class="text-center">
         <h1 class="font-bold">Who We Are</h1>
+        <p class="text-text mx-auto mt-4 max-w-2xl">
+          Cayto Group was founded by CFOs, not recruiters. We build and run
+          finance functions for U.S. companies two ways: by placing dedicated
+          accounting professionals inside your team, and by taking the books off
+          your hands entirely.
+        </p>
       </div>
       <div class="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
         <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
           <p class="h5">Founded by CFOs, Not Recruiters</p>
-          <p class="mt-3 text-text">
+          <p class="text-text mt-3">
             Most staffing firms evaluate candidates by résumé and rate. Our
             founders evaluate them the way a Controller would — by technical
             depth, professional standards, and how they'll actually perform
@@ -80,7 +86,7 @@ const securityCards = [
         </div>
         <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
           <p class="h5">Vision</p>
-          <p class="mt-3 text-text">
+          <p class="text-text mt-3">
             To be the most trusted source of offshore accounting talent for U.S.
             finance leaders — not by volume, but by the quality and longevity of
             every placement we make.
@@ -88,7 +94,7 @@ const securityCards = [
         </div>
         <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
           <p class="h5">Mission</p>
-          <p class="mt-3 text-text">
+          <p class="text-text mt-3">
             To help CFOs and Controllers build high-performing, cost-effective
             finance teams by connecting them with accounting professionals who
             can genuinely integrate, contribute, and grow within their
@@ -97,20 +103,34 @@ const securityCards = [
         </div>
         <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
           <p class="h5">Quality</p>
-          <p class="mt-3 text-text">
-            We place professionals we would hire ourselves. Every candidate who reaches a client interview has passed our full six-stage screening process.
+          <p class="text-text mt-3">
+            We place professionals we would hire ourselves. Every candidate who
+            reaches a client interview has passed our full six-stage screening
+            process.
           </p>
         </div>
         <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
           <p class="h5">Security</p>
-          <p class="mt-3 text-text">
-            Financial data is sensitive. Every engagement is structured to meet the same IT and compliance standards your team operates under, with no exceptions.
+          <p class="text-text mt-3">
+            Financial data is sensitive. Every engagement is structured to meet
+            the same IT and compliance standards your team operates under, with
+            no exceptions.
           </p>
         </div>
         <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
           <p class="h5">Long-Term Partners</p>
-          <p class="mt-3 text-text">
-            We are not a transactional staffing agency. We succeed when our clients and their Cayto professionals build lasting working relationships.
+          <p class="text-text mt-3">
+            We are not a transactional staffing agency. We succeed when our
+            clients and their Cayto professionals build lasting working
+            relationships.
+          </p>
+        </div>
+        <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
+          <p class="h5">Two Service Lines, One Standard</p>
+          <p class="text-text mt-3">
+            Whether a Cayto professional joins your team or our team runs your
+            books, the vetting, the oversight, and the U.S. accountability are
+            identical. It is the same firm and the same people.
           </p>
         </div>
       </div>
@@ -122,29 +142,37 @@ const securityCards = [
   <!-- AI-Generated -->
   <section class="section">
     <div class="container">
-      <div class="mx-auto max-w-3xl text-center mb-10">
+      <div class="mx-auto mb-10 max-w-3xl text-center">
         <h2 class="font-bold">Our Operation</h2>
-        <p class="mt-4 text-text">
-          Cayto Group professionals are based in Sri Lanka, where our local team oversees candidate sourcing, interviews, skills assessments, and background checks.
+        <p class="text-text mt-4">
+          Cayto Group professionals are based in Sri Lanka, where our local team
+          oversees candidate sourcing, interviews, skills assessments, and
+          background checks.
         </p>
       </div>
-      <div class="inset-panel rounded-xl bg-light p-8 md:p-12">
-        <p class="mb-6 font-semibold text-text-dark text-center">
+      <div class="inset-panel bg-light rounded-xl p-8 md:p-12">
+        <p class="text-text-dark mb-6 text-center font-semibold">
           Every professional placed through Cayto Group:
         </p>
-        <ul class="grid gap-4 sm:grid-cols-2 list-none pl-0">
+        <ul class="grid list-none gap-4 pl-0 sm:grid-cols-2">
           {
             operationChecklist.map((item) => (
               <li class="feature-card flex items-start gap-3 rounded-xl bg-white p-5">
                 <svg
-                  class="shrink-0 mt-0.5 text-primary"
+                  class="text-primary mt-0.5 shrink-0"
                   width="20"
                   height="20"
                   viewBox="0 0 20 20"
                   fill="none"
                   aria-hidden="true"
                 >
-                  <circle cx="10" cy="10" r="10" fill="currentColor" fill-opacity="0.12" />
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="10"
+                    fill="currentColor"
+                    fill-opacity="0.12"
+                  />
                   <path
                     d="M5.5 10.25l3 3 6-6"
                     stroke="currentColor"
@@ -163,15 +191,48 @@ const securityCards = [
   </section>
   <!-- End AI-Generated -->
 
-  <!-- Security & Compliance -->
+  <!-- Cayto Group and Caytava -->
   <!-- AI-Generated -->
   <section class="section bg-light">
     <div class="container">
-      <div class="text-center mb-8">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="font-bold">Cayto Group and Caytava</h2>
+        <p class="text-text mt-4">
+          Caytava is an AI-native accounting platform built by the same founding
+          and management team behind Cayto Group. The two are separate
+          companies, and clients contract with each independently — Cayto Group
+          for services, Caytava for the platform.
+        </p>
+        <p class="text-text mt-4">
+          The reason it matters to you is straightforward. Our Managed
+          Accounting team is not learning someone else's software from the
+          outside. The people who built the platform and the people who run your
+          books answer to the same leadership, so when something needs to change
+          to serve a client well, it changes.
+        </p>
+        <a
+          class="text-primary mt-6 inline-flex items-center gap-1 font-semibold hover:underline"
+          href="https://www.caytava.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit Caytava →
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- Security & Compliance -->
+  <!-- AI-Generated -->
+  <section class="section bg-body">
+    <div class="container">
+      <div class="mb-8 text-center">
         <h2 class="font-bold">Security and Compliance</h2>
-        <p class="mt-3 mx-auto max-w-xl text-text">
-          We understand that handing financial data access to an overseas professional is not a
-          trivial decision. Here is exactly how we handle it.
+        <p class="text-text mx-auto mt-3 max-w-xl">
+          We understand that handing financial data access to an overseas
+          professional is not a trivial decision. Here is exactly how we handle
+          it.
         </p>
       </div>
       <div class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
@@ -179,11 +240,11 @@ const securityCards = [
           securityCards.map((card) => (
             <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
               <p class="h5">{card.title}</p>
-              {card.body && <p class="mt-3 text-text">{card.body}</p>}
+              {card.body && <p class="text-text mt-3">{card.body}</p>}
               {card.bullets && (
-                <ul class="mt-3 list-none pl-0 space-y-2">
+                <ul class="mt-3 list-none space-y-2 pl-0">
                   {card.bullets.map((b) => (
-                    <li class="relative pl-5 text-text before:absolute before:left-0 before:top-[10px] before:h-2 before:w-2 before:rounded-full before:bg-primary before:content-['']">
+                    <li class="text-text before:bg-primary relative pl-5 before:absolute before:top-[10px] before:left-0 before:h-2 before:w-2 before:rounded-full before:content-['']">
                       {b}
                     </li>
                   ))}

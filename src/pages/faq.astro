@@ -5,27 +5,71 @@ import type { CollectionEntry } from "astro:content";
 import { getEntry } from "astro:content";
 
 const entry = (await getEntry("faq", "-index")) as CollectionEntry<"faq">;
-const { title, description, faqs } = entry.data;
+const { title, description, groups } = entry.data;
 ---
 
 <Base title={title} description={description}>
-  <section class="section bg-dot-grid border-y border-border">
+  <section class="section bg-dot-grid">
     <div class="container">
       <h1 class="text-center font-normal" set:html={markdownify(title)} />
-      <div class="section row -mt-6">
+
+      <!-- AI-Generated -->
+      <div class="tab mt-10">
+        <ul class="tab-nav justify-center">
+          {
+            groups?.map((group, i) => (
+              <li class={`tab-nav-item${i === 0 ? " active" : ""}`}>
+                {group.label}
+              </li>
+            ))
+          }
+        </ul>
         {
-          faqs?.map((faq) => (
-            <div class="col-12 mt-6 md:col-6">
-              <div class="p-12  shadow">
-                <div class="faq-head relative">
-                  <h4 set:html={markdownify(faq.title)} />
-                </div>
-                <p class="faq-body mt-4" set:html={markdownify(faq.answer)} />
+          groups?.map((group, i) => (
+            <div class={`tab-content-panel${i === 0 ? " active" : ""}`}>
+              <div class="row -mt-6">
+                {group.faqs?.map((faq) => (
+                  <div class="col-12 mt-6 md:col-6">
+                    <div class="p-12 shadow">
+                      <div class="faq-head relative">
+                        <h4 set:html={markdownify(faq.title)} />
+                      </div>
+                      <p
+                        class="faq-body mt-4"
+                        set:html={markdownify(faq.answer)}
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ))
         }
       </div>
+      <!-- End AI-Generated -->
     </div>
   </section>
+
+  <!-- Tab interactivity — same pattern as staffing.astro -->
+  <!-- AI-Generated -->
+  <script>
+    function initTabs() {
+      const navItems = document.querySelectorAll<HTMLElement>(".tab-nav-item");
+      const panels =
+        document.querySelectorAll<HTMLElement>(".tab-content-panel");
+      if (!navItems.length) return;
+      navItems.forEach((item, index) => {
+        item.addEventListener("click", () => {
+          navItems.forEach((n) => n.classList.remove("active"));
+          panels.forEach((p) => p.classList.remove("active"));
+          item.classList.add("active");
+          panels[index]?.classList.add("active");
+        });
+      });
+    }
+
+    initTabs();
+    document.addEventListener("astro:page-load", initTabs);
+  </script>
+  <!-- End AI-Generated -->
 </Base>
