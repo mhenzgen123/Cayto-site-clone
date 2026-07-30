@@ -1,16 +1,29 @@
 ---
+import { Image } from "astro:assets";
 import Base from "@/layouts/Base.astro";
 import Cta from "@/layouts/components/Cta.astro";
 import ProcessStep from "@/layouts/components/ProcessStep.astro";
-import LogoWall from "@/layouts/components/LogoWall.astro";
 import Testimonials from "@/layouts/components/Testimonials.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import { getEntry } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 // AI-Generated
 /** staffing.astro — dedicated Dedicated Professionals page with six-stage selection
  *  process grid, talent tier tabs, security cards, and shared CTA.
  *  Bypasses the generic [regular].astro route. Renamed from our-services.astro;
  *  /our-services now 301s here via public/_redirects.
+ *
+ *  "Why Finance Leaders Choose Cayto" is pulled from the homepage content
+ *  entry rather than duplicated here — that markdown is the single source
+ *  of truth for this copy even though the homepage itself no longer renders it.
  */
+const homepage = (await getEntry(
+  "homepage",
+  "-index",
+)) as CollectionEntry<"homepage">;
+const { feature } = homepage.data;
+
 const selectionSteps = [
   {
     step: 1,
@@ -98,8 +111,7 @@ const skillSets = [
 ];
 
 const cta = {
-  title:
-    "Add dedicated, fully vetted accounting professionals to your team. We present multiple candidates and you choose.",
+  title: "Build a High-Performing Finance Team, Seamlessly.",
   content:
     "Integrate dedicated, skilled accounting professionals into your team. Cayto Group delivers vetted talent, tailored to your needs, for immediate impact.",
   button: { enable: true, label: "Find Your Finance Expert", link: "/contact" },
@@ -116,41 +128,59 @@ const cta = {
   <!-- AI-Generated -->
   <section class="section bg-dot-grid pb-[50px]">
     <div class="container">
-      <div class="mb-12 text-center">
-        <h1 class="font-bold">Dedicated Accounting Professionals</h1>
-        <p class="text-text mx-auto mt-3 max-w-2xl">
-          Fully vetted, background-screened accounting and finance professionals
-          — exclusive to your team, managed by you, at roughly half the cost of
-          an equivalent U.S. hire.
-        </p>
+      <div class="row text-center">
+        <div class="mx-auto lg:col-8">
+          <h1 class="font-black whitespace-pre-line">
+            {"Top-Tier Accountants\nFraction of the Cost"}
+          </h1>
+          <p
+            class="mt-4"
+            set:html={markdownify(
+              "Cayto Group deploys fully vetted, background-screened accounting & finance professionals exclusively to your team — dedicated to your operations, integrated with your systems, at less than half the cost of an equivalent U.S. hire.",
+            )}
+          />
+          <a class="btn btn-primary mt-4" href="/contact">
+            Schedule a Discovery Call
+          </a>
 
-        <div
-          class="border-border bg-light sm:divide-border mx-auto mt-8 flex flex-col items-center justify-center gap-4 rounded-xl border px-8 py-6 sm:flex-row sm:gap-0 sm:divide-x"
-        >
-          <div class="flex flex-col items-center px-8 text-center">
-            <span class="text-primary text-3xl font-bold">65%+</span>
-            <span
-              class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
-              >Annual Cost Savings</span
-            >
-          </div>
-          <div class="flex flex-col items-center px-8 text-center">
-            <span class="text-primary text-3xl font-bold">14-Day</span>
-            <span
-              class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
-              >Replacement Guarantee</span
-            >
-          </div>
-          <div class="flex flex-col items-center px-8 text-center">
-            <span class="text-primary text-3xl font-bold">3-Month</span>
-            <span
-              class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
-              >Initial Contract Only</span
-            >
+          <div
+            class="border-border bg-light sm:divide-border mx-auto mt-10 flex flex-col items-center justify-center gap-4 rounded-xl border px-8 py-6 sm:flex-row sm:gap-0 sm:divide-x"
+          >
+            <div class="flex flex-col items-center px-8 text-center">
+              <span class="text-primary text-3xl font-bold">65%+</span>
+              <span
+                class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+                >Annual Cost Savings</span
+              >
+            </div>
+            <div class="flex flex-col items-center px-8 text-center">
+              <span class="text-primary text-3xl font-bold">14-Day</span>
+              <span
+                class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+                >Replacement Guarantee</span
+              >
+            </div>
+            <div class="flex flex-col items-center px-8 text-center">
+              <span class="text-primary text-3xl font-bold">3-Month</span>
+              <span
+                class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+                >Initial Contract Only</span
+              >
+            </div>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
 
+  <!-- Testimonials -->
+  <Testimonials />
+
+  <!-- Our Selection Process -->
+  <!-- AI-Generated -->
+  <section class="section bg-light">
+    <div class="container">
       <div class="mb-12 text-center">
         <h2 class="font-bold">Our Selection Process</h2>
         <p class="mt-3">
@@ -281,12 +311,44 @@ const cta = {
   </script>
   <!-- End AI-Generated -->
 
-  <!-- Trusted By logo strip -->
-  <LogoWall />
+  <!-- Why Finance Leaders Choose Cayto — moved here from the homepage -->
+  <!-- AI-Generated -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="text-center">
+        {
+          /* set:html required; markdownify returns an HTML string, not plain text */
+        }
+        <h2 set:html={markdownify(feature.title)} />
+      </div>
+      <div class="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          feature.features.map((item) => (
+            <div class="feature-card rounded-xl bg-white p-6 pb-10 text-center shadow-sm">
+              {item.icon && (
+                <Image
+                  class="mx-auto"
+                  alt=""
+                  src={item.icon}
+                  width={40}
+                  height={40}
+                />
+              )}
+              <div class="mt-4">
+                <h3 class="h5" set:html={markdownify(item.name)} />
+                <p class="mt-3">{item.content}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
 
   <!-- Modern Tooling — light AI touch, pre-empts the "won't AI replace this role" objection -->
   <!-- AI-Generated -->
-  <section class="section bg-light">
+  <section class="section bg-dot-grid">
     <div class="container">
       <div class="mx-auto max-w-3xl text-center">
         <p class="text-primary text-xs font-semibold tracking-widest uppercase">
@@ -317,9 +379,6 @@ const cta = {
     </div>
   </section>
   <!-- End AI-Generated -->
-
-  <!-- Testimonials -->
-  <Testimonials />
 
   <Cta cta={cta} />
 </Base>
