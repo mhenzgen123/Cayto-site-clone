@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 import Base from "@/layouts/Base.astro";
 import Cta from "@/layouts/components/Cta.astro";
 import LogoWall from "@/layouts/components/LogoWall.astro";
-import Testimonials from "@/layouts/components/Testimonials.astro";
 import ServiceDoor from "@/layouts/components/ServiceDoor.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import { getEntry } from "astro:content";
@@ -13,7 +12,7 @@ const homepage = (await getEntry(
   "homepage",
   "-index",
 )) as CollectionEntry<"homepage">;
-const { banner, feature, call_to_action } = homepage.data;
+const { banner, call_to_action } = homepage.data;
 ---
 
 <Base>
@@ -97,84 +96,7 @@ const { banner, feature, call_to_action } = homepage.data;
   <!-- End AI-Generated -->
 
   <!-- Trusted By logo strip -->
-  <LogoWall />
-
-  <!-- Features -->
-  <section class="section bg-light">
-    <div class="container">
-      <div class="text-center">
-        {
-          /* AI-Generated — set:html required; markdownify returns an HTML string, not plain text */
-        }
-        <h2 set:html={markdownify(feature.title)} />
-        {/* End AI-Generated */}
-      </div>
-      <div class="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
-        {
-          feature.features.map((item) => (
-            <div class="feature-card rounded-xl bg-white p-6 pb-10 text-center shadow-sm">
-              {item.icon && (
-                <Image
-                  class="mx-auto"
-                  alt=""
-                  src={item.icon}
-                  width={40}
-                  height={40}
-                />
-              )}
-              <div class="mt-4">
-                <h3 class="h5" set:html={markdownify(item.name)} />
-                <p class="mt-3">{item.content}</p>
-              </div>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <!-- How AI changes the economics -->
-  <!-- AI-Generated -->
-  <section class="section">
-    <div class="container">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-primary text-xs font-semibold tracking-widest uppercase">
-          How We Deliver
-        </p>
-        <h2 class="mt-3 font-bold">
-          The busywork is automated. The judgment is not.
-        </h2>
-        <p class="text-text mt-6">
-          Most accounting cost is not judgment. It is keying, matching, chasing
-          documents, and hunting down the reason two numbers disagree. That work
-          is now largely automatable, and we have built our delivery around that
-          fact.
-        </p>
-        <p class="text-text mt-4">
-          Bank and card feeds, bills, receipts, and invoices are captured and
-          coded automatically. Reconciliation runs continuously instead of
-          piling up at month-end. Anomalies and duplicates get flagged for
-          review rather than discovered three weeks later. What is left is the
-          part that actually requires an accountant, and a Cayto professional
-          reviews and approves every entry before it reaches your books.
-        </p>
-        <p class="text-text mt-4">
-          That is how we deliver better work faster, at a price a traditional
-          firm cannot match.
-        </p>
-        <a
-          class="text-primary mt-6 inline-flex items-center gap-1 font-semibold hover:underline"
-          href="/managed-accounting"
-        >
-          See how Managed Accounting works →
-        </a>
-      </div>
-    </div>
-  </section>
-  <!-- End AI-Generated -->
-
-  <!-- Testimonials -->
-  <Testimonials />
+  <LogoWall eyebrow="Trusted by companies across the U.S." />
 
   <!-- Call to Action -->
   <Cta cta={call_to_action} />

@@ -6,13 +6,14 @@ import Cta from "@/layouts/components/Cta.astro";
 /** about-us.astro — dedicated About Us page with hero, values grid, operation
  *  two-column section, security & compliance, and shared CTA.
  */
+// Same CTA content as the homepage, for consistency between the two pages.
 const cta = {
-  title: "Build a High-Performing Finance Team, Seamlessly.",
+  title: "Build a High-Performing Finance Function.",
   content:
-    "Ready to see how Cayto Group can strengthen your finance department — without the cost and friction of domestic hiring?",
+    "Whether you need a dedicated professional on your team or want the books handled entirely, we'll tell you honestly which fits — and what it costs.",
   button: {
     enable: true,
-    label: "Schedule a Discovery Call",
+    label: "Start the Conversation",
     link: "/contact",
   },
 };
@@ -125,14 +126,6 @@ const securityCards = [
             relationships.
           </p>
         </div>
-        <div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm">
-          <p class="h5">Two Service Lines, One Standard</p>
-          <p class="text-text mt-3">
-            Whether a Cayto professional joins your team or our team runs your
-            books, the vetting, the oversight, and the U.S. accountability are
-            identical. It is the same firm and the same people.
-          </p>
-        </div>
       </div>
     </div>
   </section>
@@ -191,41 +184,9 @@ const securityCards = [
   </section>
   <!-- End AI-Generated -->
 
-  <!-- Cayto Group and Caytava -->
-  <!-- AI-Generated -->
-  <section class="section bg-light">
-    <div class="container">
-      <div class="mx-auto max-w-3xl text-center">
-        <h2 class="font-bold">Cayto Group and Caytava</h2>
-        <p class="text-text mt-4">
-          Caytava is an AI-native accounting platform built by the same founding
-          and management team behind Cayto Group. The two are separate
-          companies, and clients contract with each independently — Cayto Group
-          for services, Caytava for the platform.
-        </p>
-        <p class="text-text mt-4">
-          The reason it matters to you is straightforward. Our Managed
-          Accounting team is not learning someone else's software from the
-          outside. The people who built the platform and the people who run your
-          books answer to the same leadership, so when something needs to change
-          to serve a client well, it changes.
-        </p>
-        <a
-          class="text-primary mt-6 inline-flex items-center gap-1 font-semibold hover:underline"
-          href="https://www.caytava.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Visit Caytava →
-        </a>
-      </div>
-    </div>
-  </section>
-  <!-- End AI-Generated -->
-
   <!-- Security & Compliance -->
   <!-- AI-Generated -->
-  <section class="section bg-body">
+  <section class="section bg-light">
     <div class="container">
       <div class="mb-8 text-center">
         <h2 class="font-bold">Security and Compliance</h2>

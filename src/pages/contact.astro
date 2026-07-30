@@ -12,19 +12,12 @@ const entry = (await getEntry(
 const { title, meta_title, description, info } = entry.data;
 
 // AI-Generated
-/** Two Calendly event types, one per service line. The Managed Accounting
- *  event (with custom qualification questions — revenue band, transaction
- *  volume, current system, how far behind) does not exist yet; see
- *  [VERIFY] in the final build summary. Until Mike creates it, both panels
- *  point at the existing caytogroup event so the page never ships with a
- *  broken embed. Swapping in the real URL later is a one-line change here.
+/** Single Calendly event covering both service lines. Which service the
+ *  visitor wants is captured via a Calendly custom question rather than a
+ *  page-level selector.
  */
-const calendly = {
-  managedAccounting:
-    "https://calendly.com/mikehenzgen/caytogroup?text_color=000a48&primary_color=249ebc", // [VERIFY] placeholder — swap for /managed-accounting event once Mike creates it
-  dedicatedProfessionals:
-    "https://calendly.com/mikehenzgen/caytogroup?text_color=000a48&primary_color=249ebc",
-};
+const calendlyUrl =
+  "https://calendly.com/mikehenzgen/caytogroup?text_color=000a48&primary_color=249ebc";
 // End AI-Generated
 ---
 
@@ -47,70 +40,29 @@ const calendly = {
         <p class="text-text mt-3" set:html={markdownify(description)} />
       </div>
 
-      <!-- Service-line selector driving two Calendly embeds -->
-      <div class="tab">
-        <ul class="tab-nav justify-center">
-          <li class="tab-nav-item active">Managed Accounting</li>
-          <li class="tab-nav-item">Dedicated Professionals</li>
-        </ul>
-        <div class="tab-content-panel active">
-          <div
-            class="calendly-inline-widget"
-            data-url={calendly.managedAccounting}
-            style="min-width:320px;height:700px;"
-          >
-          </div>
-        </div>
-        <div class="tab-content-panel">
-          <div
-            class="calendly-inline-widget"
-            data-url={calendly.dedicatedProfessionals}
-            style="min-width:320px;height:700px;"
-          >
-          </div>
-        </div>
+      <div
+        class="calendly-inline-widget"
+        data-url={calendlyUrl}
+        style="min-width:320px;height:700px;"
+      >
       </div>
       <script
         type="text/javascript"
         src="https://assets.calendly.com/assets/external/widget.js"
         async></script>
       <script>
-        /** Contact page: service-line selector driving two Calendly embeds.
-         *  Runs immediately and on astro:page-load (see the tab pattern in
-         *  staffing.astro) to survive ClientRouter soft navigations.
-         *  Calendly widgets inside a display:none panel do not size correctly until
-         *  they are visible, so initInlineWidgets() is re-run after each switch.
+        /** On ClientRouter soft navigation the Calendly script doesn't re-run,
+         *  so the widget div is never scanned. Re-init manually on every
+         *  page-load, and once immediately in case this script loads after
+         *  astro:page-load has already fired.
          */
-        function initContactTabs() {
-          const navItems =
-            document.querySelectorAll<HTMLElement>(".tab-nav-item");
-          const panels =
-            document.querySelectorAll<HTMLElement>(".tab-content-panel");
-          if (!navItems.length) return;
-
-          navItems.forEach((item, index) => {
-            item.addEventListener("click", () => {
-              navItems.forEach((n) => n.classList.remove("active"));
-              panels.forEach((p) => p.classList.remove("active"));
-              item.classList.add("active");
-              panels[index]?.classList.add("active");
-              // @ts-ignore — Calendly is injected by an external script
-              if (window.Calendly) window.Calendly.initInlineWidgets();
-            });
-          });
-        }
-
         function initCalendly() {
-          // @ts-ignore
+          // @ts-ignore — Calendly is injected by an external script
           if (window.Calendly) window.Calendly.initInlineWidgets();
         }
 
-        initContactTabs();
         initCalendly();
-        document.addEventListener("astro:page-load", () => {
-          initContactTabs();
-          initCalendly();
-        });
+        document.addEventListener("astro:page-load", initCalendly);
       </script>
       {/* End Calendly embed */}
     </div>
