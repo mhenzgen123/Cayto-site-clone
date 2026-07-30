@@ -1,8 +1,6 @@
 ---
 import Base from "@/layouts/Base.astro";
 import ProcessStep from "@/layouts/components/ProcessStep.astro";
-import LogoWall from "@/layouts/components/LogoWall.astro";
-import Testimonials from "@/layouts/components/Testimonials.astro";
 
 // AI-Generated
 /** managed-accounting.astro — flagship page for the new Managed Accounting
@@ -165,10 +163,9 @@ const pricingTiers = [
           every month. Built on AI-native tooling, reviewed by U.S.-based
           accountants, at roughly half what a local bookkeeper costs.
         </p>
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <a class="btn btn-accent" href="/contact">Get Started</a>
-          <a class="btn btn-outline-primary" href="#pricing">See Pricing</a>
-        </div>
+        <a class="btn btn-accent mt-8 inline-block" href="/contact"
+          >Get Started</a
+        >
 
         <div
           class="border-border bg-light sm:divide-border mx-auto mt-10 flex flex-col items-center justify-center gap-4 rounded-xl border px-8 py-6 sm:flex-row sm:gap-0 sm:divide-x"
@@ -200,25 +197,20 @@ const pricingTiers = [
   </section>
   <!-- End AI-Generated -->
 
-  <!-- Who this is for -->
+  <!-- U.S. oversight and trust — moved up to directly follow the hero -->
   <!-- AI-Generated -->
   <section class="section bg-body">
     <div class="container">
       <div class="mx-auto mb-12 max-w-2xl text-center">
-        <h2 class="font-bold">
-          Built for companies without an accounting department
-        </h2>
+        <h2 class="font-bold">Hybrid Onshore/Offshore delivery</h2>
         <p class="text-text mt-4">
-          If you have a Controller and need more capacity, our
-          <a class="text-primary hover:underline" href="/staffing"
-            >staffing line</a
-          >
-          is the better fit. Managed Accounting is for everyone else.
+          The same standards that govern our staffing engagements apply here,
+          because it is the same firm and the same people.
         </p>
       </div>
-      <div class="grid gap-x-8 gap-y-6 sm:grid-cols-3">
+      <div class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
         {
-          whoFor.map((card) => (
+          trustCards.map((card) => (
             <div class="feature-card border-accent rounded-xl border-t-4 bg-white p-6 pb-10">
               <p class="h5">{card.title}</p>
               <p class="text-text mt-3">{card.body}</p>
@@ -229,6 +221,40 @@ const pricingTiers = [
     </div>
   </section>
   <!-- End AI-Generated -->
+
+  {
+    /* "Who this is for" — disabled per client request (2026-07-30), kept
+       here so it can be re-enabled later. Flip `false` to `true` to bring
+       it back; nothing else needs to change. */
+  }
+  {
+    false && (
+      <section class="section bg-body">
+        <div class="container">
+          <div class="mx-auto mb-12 max-w-2xl text-center">
+            <h2 class="font-bold">
+              Built for companies without an accounting department
+            </h2>
+            <p class="text-text mt-4">
+              If you have a Controller and need more capacity, our{" "}
+              <a class="text-primary hover:underline" href="/staffing">
+                staffing line
+              </a>{" "}
+              is the better fit. Managed Accounting is for everyone else.
+            </p>
+          </div>
+          <div class="grid gap-x-8 gap-y-6 sm:grid-cols-3">
+            {whoFor.map((card) => (
+              <div class="feature-card border-accent rounded-xl border-t-4 bg-white p-6 pb-10">
+                <p class="h5">{card.title}</p>
+                <p class="text-text mt-3">{card.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <!-- What's included -->
   <!-- AI-Generated -->
@@ -367,31 +393,6 @@ const pricingTiers = [
   </section>
   <!-- End AI-Generated -->
 
-  <!-- U.S. oversight and trust -->
-  <!-- AI-Generated -->
-  <section class="section bg-body">
-    <div class="container">
-      <div class="mx-auto mb-12 max-w-2xl text-center">
-        <h2 class="font-bold">Offshore delivery. U.S. accountability.</h2>
-        <p class="text-text mt-4">
-          The same standards that govern our staffing engagements apply here,
-          because it is the same firm and the same people.
-        </p>
-      </div>
-      <div class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
-        {
-          trustCards.map((card) => (
-            <div class="feature-card border-accent rounded-xl border-t-4 bg-white p-6 pb-10">
-              <p class="h5">{card.title}</p>
-              <p class="text-text mt-3">{card.body}</p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-  <!-- End AI-Generated -->
-
   <!-- Pricing -->
   <!-- AI-Generated -->
   <section id="pricing" class="section bg-light">
@@ -468,12 +469,6 @@ const pricingTiers = [
     </div>
   </section>
   <!-- End AI-Generated -->
-
-  <!-- Logo wall -->
-  <LogoWall eyebrow="Trusted by finance teams across the U.S." />
-
-  <!-- Testimonials -->
-  <Testimonials accent="accent" heading="What Our Clients Say" />
 
   <!-- Closing CTA -->
   <!-- AI-Generated — Cta.astro hardcodes .btn-primary; authored inline with .btn-accent -->
