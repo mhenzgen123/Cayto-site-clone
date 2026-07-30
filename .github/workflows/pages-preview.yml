@@ -1,0 +1,54 @@
+name: Deploy GitHub Pages preview
+
+# Preview-only workflow for reviewing the managed-accounting rework in
+# isolation from the live Cloudflare deployment (which builds from `main`
+# separately and is untouched by this file). Scoped to this one branch on
+# purpose — see scripts/rewrite-base-path.mjs for why the build needs a
+# base-path rewrite pass to work under the GitHub Pages project subpath.
+on:
+  push:
+    branches:
+      - managed-accounting-rework
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one Pages deployment can be live at a time; cancel any in-flight
+# run if a newer push comes in.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Build site
+        run: npm run build
+      - name: Rewrite root-absolute paths for the Pages subpath
+        env:
+          PAGES_BASE_PATH: /Cayto-site-clone
+        run: node scripts/rewrite-base-path.mjs
+      - name: Add .nojekyll
+        run: touch dist/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
