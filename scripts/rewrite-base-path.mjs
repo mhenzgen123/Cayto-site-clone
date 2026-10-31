@@ -40,13 +40,21 @@ const files = [...walk(distDir, [".html"]), ...walk(distDir, [".css"])];
 const attrPattern = /((?:href|src|srcset|action|poster)=["'])\/(?!\/)/g;
 // Matches CSS url(/...) but not url(data:...) or url(http...).
 const cssUrlPattern = /(url\(\s*["']?)\/(?!\/)/g;
+// Matches the url= part of <meta http-equiv="refresh" content="0;url=/...">,
+// which Astro's static `redirects` config emits. The attrPattern above
+// already rewrites that same page's <a href="..."> fallback link, but the
+// meta-refresh is what actually fires the redirect (instantly, since Astro
+// sets a 0-second delay), so it has to be rewritten too or the redirect
+// lands at the site root instead of the Pages subpath.
+const metaRefreshPattern = /(content=["']\d*;\s*url=)\/(?!\/)/g;
 
 let changedFiles = 0;
 for (const file of files) {
   const before = readFileSync(file, "utf8");
   const after = before
     .replace(attrPattern, `$1${base}/`)
-    .replace(cssUrlPattern, `$1${base}/`);
+    .replace(cssUrlPattern, `$1${base}/`)
+    .replace(metaRefreshPattern, `$1${base}/`);
   if (after !== before) {
     writeFileSync(file, after);
     changedFiles++;

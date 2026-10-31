@@ -1,0 +1,339 @@
+---
+import Base from "@/layouts/Base.astro";
+import ProcessStep from "@/layouts/components/ProcessStep.astro";
+
+// AI-Generated
+/** bookkeeping.astro — flagship page for the Bookkeeping service line
+ *  (renamed from managed-accounting.astro / Managed Accounting). Hardcoded
+ *  data arrays in frontmatter, matching the pattern in staffing.astro. Navy
+ *  accent throughout; .bg-accent-panel used exactly once for the
+ *  automation/Caytava band. Single flat price, no tiers.
+ */
+const sameStandardsCards = [
+  {
+    title: "A U.S. principal owns your account.",
+    body: "Every client has a U.S.-based Cayto principal accountable for the work and one named day-to-day contact. No ticket queues.",
+  },
+  {
+    title: "Reviewed before it's delivered.",
+    body: "A qualified Cayto accountant reviews every entry before it reaches your financial statements. Over 70% of our team has Big 4 experience.",
+  },
+  {
+    title: "Screened and verified.",
+    body: "Every Cayto professional passes reference checks, employer verification and a background check before touching client work.",
+  },
+  {
+    title: "You contract with a U.S. company.",
+    body: "You work with Cayto Group LLC and get a U.S. invoice, a W-9 and a fixed monthly rate. Your data and work product stay yours.",
+  },
+];
+
+const included = [
+  {
+    title: "Transaction categorization",
+    body: "Every bank and card transaction coded to the right account.",
+  },
+  {
+    title: "Reconciliations",
+    body: "Bank, card and balance sheet accounts reconciled as you go, not at month-end.",
+  },
+  {
+    title: "Accounts payable",
+    body: "Bills entered and coded, payments prepared for your approval.",
+  },
+  {
+    title: "Accounts receivable",
+    body: "Invoices sent, payments applied, aging tracked.",
+  },
+  {
+    title: "Month-end close",
+    body: "Accruals, prepaids, depreciation and recurring entries.",
+  },
+  {
+    title: "Financial statements",
+    body: "P&L, balance sheet and cash flow, delivered on a set schedule.",
+  },
+  {
+    title: "Management reporting",
+    body: "A short monthly summary that explains the numbers.",
+  },
+  {
+    title: "Year-end package",
+    body: "Clean, tax-ready books handed to your CPA.",
+  },
+];
+
+const howItWorks = [
+  {
+    step: 1,
+    title: "Assessment",
+    description:
+      "We review your books, systems and volume, then quote a fixed monthly price before you commit.",
+  },
+  {
+    step: 2,
+    title: "Free migration",
+    description:
+      "We move you onto Caytava, set up your chart of accounts, connect your bank and card feeds, and bring over your history. No cost and no data entry for you.",
+  },
+  {
+    step: 3,
+    title: "Cleanup",
+    description: "If your books are behind, we bring them current first.",
+  },
+  {
+    step: 4,
+    title: "Ongoing",
+    description:
+      "Transactions are coded as they come in, books close on a set schedule, and you get financial statements every month.",
+  },
+];
+
+const automationPoints = [
+  {
+    heading: "Automated capture and coding",
+    body: "No manual keying.",
+  },
+  {
+    heading: "Continuous reconciliation",
+    body: "Month-end becomes a review, not a rebuild.",
+  },
+  {
+    heading: "Human approval on every entry",
+    body: "Nothing posts without a Cayto accountant's sign-off.",
+  },
+];
+
+const caytavaCallouts = [
+  {
+    title: "Free migration.",
+    body: "We move you over from QuickBooks, Xero, etc. at no cost.",
+  },
+  {
+    title: "Same price or less.",
+    body: "Caytava costs the same as or less than QuickBooks, Xero, etc. You subscribe to it directly.",
+  },
+];
+// End AI-Generated
+---
+
+<Base
+  title="Outsourced Bookkeeping from $500/mo | Cayto Group"
+  meta_title="Outsourced Bookkeeping from $500/mo | Cayto Group"
+  description="Full-cycle bookkeeping from Cayto Group, from transactions to financial statements every month, starting at $500 per month."
+>
+  <!-- Hero -->
+  <!-- AI-Generated -->
+  <section class="section bg-dot-grid pb-[50px]">
+    <div class="container">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-accent text-xs font-semibold tracking-widest uppercase">
+          Bookkeeping
+        </p>
+        <h1 class="mt-3 font-bold">Your books, handled.</h1>
+        <p class="text-text mt-4">
+          We handle your bookkeeping every month, from transactions to financial
+          statements, so you can focus on running your business. Starting at
+          $500 per month.
+        </p>
+        <a class="btn btn-accent mt-8 inline-block" href="/contact"
+          >Get Started</a
+        >
+
+        <div
+          class="border-border bg-light sm:divide-border mx-auto mt-10 flex flex-col items-center justify-center gap-4 rounded-xl border px-8 py-6 sm:flex-row sm:gap-0 sm:divide-x"
+        >
+          <div class="flex flex-col items-center px-8 text-center">
+            <span class="text-accent text-3xl font-bold">From $500</span>
+            <span
+              class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+              >Per Month</span
+            >
+          </div>
+          <div class="flex flex-col items-center px-8 text-center">
+            <span class="text-accent text-3xl font-bold">Monthly</span>
+            <span
+              class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+              >Financial Statements</span
+            >
+          </div>
+          <div class="flex flex-col items-center px-8 text-center">
+            <span class="text-accent text-3xl font-bold">14-Day</span>
+            <span
+              class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+              >Guarantee</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- Same Team. Same Standards. -->
+  <!-- AI-Generated -->
+  <section class="section bg-body">
+    <div class="container">
+      <div class="mx-auto mb-12 max-w-2xl text-center">
+        <h2 class="font-bold">Same Team. Same Standards.</h2>
+        <p class="text-text mt-4">
+          Your books are handled by the same vetted professionals our staffing
+          clients rely on.
+        </p>
+      </div>
+      <div class="grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        {
+          sameStandardsCards.map((card) => (
+            <div class="feature-card border-accent rounded-xl border-t-4 bg-white p-6 pb-10">
+              <p class="h5">{card.title}</p>
+              <p class="text-text mt-3">{card.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- What's included -->
+  <!-- AI-Generated -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="mx-auto mb-12 max-w-2xl text-center">
+        <h2 class="font-bold">Full-Cycle Bookkeeping, Every Month</h2>
+        <p class="text-text mt-4">Everything below is included.</p>
+      </div>
+      <div class="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          included.map((item) => (
+            <div class="feature-card rounded-xl bg-white p-6 pb-8">
+              <img
+                src="/images/icons/checkmark-circle.svg"
+                alt=""
+                width="32"
+                height="32"
+              />
+              <p class="h5 mt-4">{item.title}</p>
+              <p class="text-text mt-2">{item.body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- How it works -->
+  <!-- AI-Generated -->
+  <section class="section bg-body">
+    <div class="container">
+      <div class="mb-12 text-center">
+        <h2 class="font-bold">From Messy to Current in Weeks</h2>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          howItWorks.map((s) => (
+            <ProcessStep
+              step={s.step}
+              title={s.title}
+              description={s.description}
+              accent="accent"
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- Automation + Caytava band -->
+  <!-- AI-Generated -->
+  <section class="section bg-accent-panel">
+    <div class="container">
+      <div class="mx-auto max-w-4xl text-center">
+        <p
+          class="text-xs font-semibold tracking-widest text-white/70 uppercase"
+        >
+          How We Keep It Affordable
+        </p>
+        <h2 class="mt-3 font-bold">
+          Automation Does the Busywork. Accountants Do the Rest.
+        </h2>
+        <p class="mt-6">
+          Bank feeds, bills, receipts and invoices are captured and coded
+          automatically. Accounts reconcile as transactions come in, and
+          anything unusual is flagged right away. A Cayto accountant reviews and
+          approves every entry before it posts. AI never writes to your books on
+          its own.
+        </p>
+      </div>
+
+      <div class="mx-auto mt-12 grid max-w-4xl gap-8 sm:grid-cols-3">
+        {
+          automationPoints.map((item) => (
+            <div class="text-center sm:text-left">
+              <p class="font-bold">{item.heading}</p>
+              <p class="mt-2">{item.body}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div
+        class="mx-auto mt-10 max-w-4xl border-t border-white/15 pt-10 text-center"
+      >
+        <p
+          class="text-xs font-semibold tracking-widest text-white/70 uppercase"
+        >
+          Our Platform
+        </p>
+        <h2 class="mt-3 font-bold">Built on Caytava</h2>
+        <p class="mt-4">
+          Every bookkeeping client runs on Caytava, an AI-native accounting
+          platform built by our sister company. Accounting, payments, AP, AR and
+          reporting live in one system instead of four.
+        </p>
+
+        <div class="mx-auto mt-8 grid max-w-2xl gap-6 text-left sm:grid-cols-2">
+          {
+            caytavaCallouts.map((item) => (
+              <div>
+                <p class="font-bold">{item.title}</p>
+                <p class="mt-2">{item.body}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <a
+          class="btn btn-on-dark mt-8 inline-block"
+          href="https://www.caytava.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit Caytava →
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- Closing CTA -->
+  <!-- AI-Generated — Cta.astro hardcodes .btn-primary; authored inline with .btn-accent -->
+  <section class="section px-4">
+    <div class="section bg-light container rounded-xl shadow">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="font-bold">Let's Get Your Books Handled.</h2>
+        <p class="text-text mt-4">
+          Tell us where things stand, even if it's a shoebox of receipts. We'll
+          review it, quote a fixed monthly price and tell you if we're the right
+          fit. Bookkeeping starts at $500 per month.
+        </p>
+        <a class="btn btn-accent mt-6 inline-block" href="/contact"
+          >Get Started</a
+        >
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+</Base>

@@ -1,11 +1,7 @@
 ---
 banner:
   title: "Top-Tier Accounting.\nFraction of the Cost."
-  content: "Two ways to strengthen your finance function. Put a dedicated, fully vetted accounting professional on your team — or hand us the books entirely and get clean financials every month. Both at roughly half the cost of doing it onshore."
-  button:
-    enable: true
-    label: "Schedule a Discovery Call"
-    link: "/contact"
+  content: "Vetted, Big 4 trained accountants who join your team, or bookkeeping fully handled for you. Either way, you save 65%+ compared to doing it in-house."
 
 # feature
 feature:
@@ -13,27 +9,27 @@ feature:
   features:
     - name: "Talent Pool"
       icon: "/images/icons/icon-talent.svg"
-      content: "Over 70% of Cayto professionals have Big 4 accounting experience"
+      content: "Over 70% of our professionals have Big 4 experience."
     - name: "Thorough Vetting"
       icon: "/images/icons/checkmark-circle.svg"
-      content: "Every professional is interviewed, skills-tested, and reference & background checked before they touch client work"
+      content: "Every professional is interviewed, skills-tested, and reference and background checked before starting client work."
     - name: "U.S. Oversight"
       icon: "/images/icons/user-clock.svg"
-      content: "A U.S.-based principal is accountable for every engagement — you always have someone in your time zone to call"
+      content: "A U.S.-based principal is accountable for every engagement."
     - name: "Cost Savings"
       icon: "/images/icons/icon-savings.svg"
-      content: "Roughly half the cost of the onshore equivalent — fully burdened, no benefits, no recruiting fees"
-    - name: "AI-Enabled Delivery"
-      icon: "/images/icons/speedometer.svg"
-      content: "Our teams work on modern, AI-native tooling — less manual keying, faster closes, fewer errors to chase"
+      content: "65%+ annual savings compared to U.S. talent, fully burdened."
+    - name: "14-Day Guarantee"
+      icon: "/images/icons/love.svg"
+      content: "Not satisfied in the first 14 days? Cancel or replace at no charge."
     - name: "Flexible Contracts"
       icon: "/images/icons/icon-contract.svg"
-      content: "Three-month initial term, then month to month. No annual lock-in"
+      content: "Three-month initial term, then month to month."
 
 # call_to_action
 call_to_action:
-  title: Build a High-Performing Finance Function.
-  content: "Whether you need a dedicated professional on your team or want the books handled entirely, we'll tell you honestly which fits — and what it costs."
+  title: Build a High-Performing Finance Team.
+  content: "Need another accountant on your team, or want your books handled? We'll tell you which fits and what it costs."
   button:
     enable: true
     label: "Start the Conversation"

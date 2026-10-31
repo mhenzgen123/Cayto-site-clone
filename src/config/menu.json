@@ -1,15 +1,8 @@
 {
   "main": [
     { "name": "Home", "url": "/" },
-    {
-      "name": "Services",
-      "url": "#",
-      "hasChildren": true,
-      "children": [
-        { "name": "Managed Accounting", "url": "/managed-accounting" },
-        { "name": "Dedicated Professionals", "url": "/staffing" }
-      ]
-    },
+    { "name": "Staffing", "url": "/staffing" },
+    { "name": "Bookkeeping", "url": "/bookkeeping" },
     { "name": "About Us", "url": "/about-us" },
     { "name": "Blog", "url": "/blog" },
     { "name": "Careers", "url": "/careers" },
@@ -29,8 +22,8 @@
     {
       "name": "Services & Info",
       "menu": [
-        { "text": "Managed Accounting", "url": "/managed-accounting" },
-        { "text": "Dedicated Professionals", "url": "/staffing" },
+        { "text": "Staffing", "url": "/staffing" },
+        { "text": "Bookkeeping", "url": "/bookkeeping" },
         { "text": "FAQ", "url": "/faq" },
         { "text": "Privacy Policy", "url": "/privacy-policy" },
         { "text": "Terms & Conditions", "url": "/terms-conditions" }

@@ -5,24 +5,55 @@ import Cta from "@/layouts/components/Cta.astro";
 import ProcessStep from "@/layouts/components/ProcessStep.astro";
 import Testimonials from "@/layouts/components/Testimonials.astro";
 import { markdownify } from "@/lib/utils/textConverter";
-import { getEntry } from "astro:content";
-import type { CollectionEntry } from "astro:content";
 
 // AI-Generated
-/** staffing.astro — dedicated Dedicated Professionals page with six-stage selection
- *  process grid, talent tier tabs, security cards, and shared CTA.
- *  Bypasses the generic [regular].astro route. Renamed from our-services.astro;
+/** staffing.astro — dedicated Staffing page with six-stage selection process
+ *  grid, talent tier tabs, security cards, and shared CTA. Bypasses the
+ *  generic [regular].astro route. Renamed from our-services.astro;
  *  /our-services now 301s here via public/_redirects.
  *
- *  "Why Finance Leaders Choose Cayto" is pulled from the homepage content
- *  entry rather than duplicated here — that markdown is the single source
- *  of truth for this copy even though the homepage itself no longer renders it.
+ *  "Why Finance Leaders Choose Cayto" is hardcoded here rather than shared
+ *  with the homepage content entry: the Cost Savings card reads differently
+ *  on this page (staffing-specific framing) than on the homepage.
  */
-const homepage = (await getEntry(
-  "homepage",
-  "-index",
-)) as CollectionEntry<"homepage">;
-const { feature } = homepage.data;
+const feature = {
+  title: "Why Finance Leaders Choose Cayto",
+  features: [
+    {
+      name: "Talent Pool",
+      icon: "/images/icons/icon-talent.svg",
+      content: "Over 70% of our professionals have Big 4 experience.",
+    },
+    {
+      name: "Thorough Vetting",
+      icon: "/images/icons/checkmark-circle.svg",
+      content:
+        "Every professional is interviewed, skills-tested, and reference and background checked before starting client work.",
+    },
+    {
+      name: "U.S. Oversight",
+      icon: "/images/icons/user-clock.svg",
+      content: "A U.S.-based principal is accountable for every engagement.",
+    },
+    {
+      name: "Cost Savings",
+      icon: "/images/icons/icon-savings.svg",
+      content:
+        "65%+ less than the U.S. equivalent. Fully burdened, no benefits, no recruiting fees.",
+    },
+    {
+      name: "14-Day Guarantee",
+      icon: "/images/icons/love.svg",
+      content:
+        "Not satisfied in the first 14 days? Cancel or replace at no charge.",
+    },
+    {
+      name: "Flexible Contracts",
+      icon: "/images/icons/icon-contract.svg",
+      content: "Three-month initial term, then month to month.",
+    },
+  ],
+};
 
 const selectionSteps = [
   {
@@ -72,7 +103,7 @@ const tiers = [
       "Staff Accountant",
       "Accounting Analyst",
     ],
-    experience: ["3–5 years of public or private industry accounting"],
+    experience: ["3 to 5 years of public or private industry accounting"],
     certifications: ["AAT", "CA (In-Progress)"],
   },
   {
@@ -83,7 +114,7 @@ const tiers = [
       "Financial Analyst",
       "Revenue Accountant",
     ],
-    experience: ["6-10 Years", "Mix of public and private", "Big 4"],
+    experience: ["6 to 10 Years", "Mix of public and private", "Big 4"],
     certifications: ["CA", "CMA", "CIMA", "ACCA"],
   },
   {
@@ -120,9 +151,9 @@ const cta = {
 ---
 
 <Base
-  title="Dedicated Professionals | Cayto Group"
-  meta_title="Dedicated Professionals | Cayto Group"
-  description="Dedicated, fully vetted offshore accounting professionals embedded on your team. Six-stage screening, Big 4-caliber talent, roughly half the cost of a U.S. hire."
+  title="Offshore Accounting Staffing | Cayto Group"
+  meta_title="Offshore Accounting Staffing | Cayto Group"
+  description="Cayto Group places vetted, background-screened accounting and finance professionals on your team, at 65%+ less than an equivalent U.S. hire."
 >
   <!-- Hero -->
   <!-- AI-Generated -->
@@ -136,7 +167,7 @@ const cta = {
           <p
             class="mt-4"
             set:html={markdownify(
-              "Cayto Group deploys fully vetted, background-screened accounting & finance professionals exclusively to your team — dedicated to your operations, integrated with your systems, at less than half the cost of an equivalent U.S. hire.",
+              "Cayto Group places vetted, background-screened accounting and finance professionals on your team. They work only for you, inside your systems, at 65%+ less than an equivalent U.S. hire.",
             )}
           />
           <a class="btn btn-primary mt-4" href="/contact">
@@ -157,14 +188,14 @@ const cta = {
               <span class="text-primary text-3xl font-bold">14-Day</span>
               <span
                 class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
-                >Replacement Guarantee</span
+                >Guarantee</span
               >
             </div>
             <div class="flex flex-col items-center px-8 text-center">
               <span class="text-primary text-3xl font-bold">3-Month</span>
               <span
                 class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
-                >Initial Contract Only</span
+                >Initial Contract</span
               >
             </div>
           </div>
@@ -311,7 +342,7 @@ const cta = {
   </script>
   <!-- End AI-Generated -->
 
-  <!-- Why Finance Leaders Choose Cayto — moved here from the homepage -->
+  <!-- Why Finance Leaders Choose Cayto -->
   <!-- AI-Generated -->
   <section class="section bg-light">
     <div class="container">
@@ -358,22 +389,17 @@ const cta = {
           Professionals who work the way finance works now
         </h2>
         <p class="text-text mt-6">
-          Automation is changing what an accountant spends their day doing. Our
-          professionals are trained on AI-enabled accounting workflows —
-          automated document intake and coding, continuous reconciliation, and
-          anomaly review — so the person you place is spending their time on
-          judgment and analysis rather than keying and matching.
-        </p>
-        <p class="text-text mt-4">
-          It also means they adapt to your stack rather than resisting it.
-          NetSuite, Sage Intacct, QuickBooks Online, Xero, Bill.com, and
-          whatever you adopt next.
+          Our professionals are trained on AI-enabled workflows like automated
+          coding, continuous reconciliation and anomaly review, so their time
+          goes to judgment and analysis instead of data entry. They adapt to
+          your stack: NetSuite, Sage Intacct, QuickBooks Online, Xero, Bill.com
+          and whatever comes next.
         </p>
         <a
           class="text-primary mt-6 inline-flex items-center gap-1 font-semibold hover:underline"
-          href="/managed-accounting"
+          href="/bookkeeping"
         >
-          Want the whole function handled instead? See Managed Accounting →
+          Want your books handled instead? See Bookkeeping →
         </a>
       </div>
     </div>

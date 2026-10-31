@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import Base from "@/layouts/Base.astro";
 import Cta from "@/layouts/components/Cta.astro";
 import LogoWall from "@/layouts/components/LogoWall.astro";
-import ServiceDoor from "@/layouts/components/ServiceDoor.astro";
+import Testimonials from "@/layouts/components/Testimonials.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import { getEntry } from "astro:content";
 import type { CollectionEntry } from "astro:content";
@@ -12,10 +12,14 @@ const homepage = (await getEntry(
   "homepage",
   "-index",
 )) as CollectionEntry<"homepage">;
-const { banner, call_to_action } = homepage.data;
+const { banner, feature, call_to_action } = homepage.data;
 ---
 
-<Base>
+<Base
+  title="Cayto Group | Offshore Accounting Staffing & Bookkeeping"
+  meta_title="Cayto Group | Offshore Accounting Staffing & Bookkeeping"
+  description="Cayto Group places vetted offshore accounting professionals on your team and offers full-service bookkeeping, both at 65%+ less than doing it in-house."
+>
   <!-- banner -->
   <section class="section bg-dot-grid pb-[50px]">
     <div class="container">
@@ -28,75 +32,82 @@ const { banner, call_to_action } = homepage.data;
             )
           }
 
-          {
-            banner?.button?.enable && (
-              <a class="btn btn-primary mt-4" href={banner.button.link}>
-                {banner.button.label}
-              </a>
-            )
-          }
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a class="btn btn-primary" href="/staffing">Explore Staffing</a>
+            <a class="btn btn-outline-primary" href="/bookkeeping"
+              >Explore Bookkeeping</a
+            >
+          </div>
 
-          {
-            banner?.image && (
-              <Image
-                class="mx-auto mt-12"
-                src={banner?.image}
-                width={750}
-                height={390}
-                alt="banner image"
-              />
-            )
-          }
+          <div
+            class="border-border bg-light sm:divide-border mx-auto mt-10 flex flex-col items-center justify-center gap-4 rounded-xl border px-8 py-6 sm:flex-row sm:gap-0 sm:divide-x"
+          >
+            <div class="flex flex-col items-center px-8 text-center">
+              <span class="text-primary text-3xl font-bold">65%+</span>
+              <span
+                class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+                >Annual Cost Savings</span
+              >
+            </div>
+            <div class="flex flex-col items-center px-8 text-center">
+              <span class="text-primary text-3xl font-bold">14-Day</span>
+              <span
+                class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+                >Guarantee</span
+              >
+            </div>
+            <div class="flex flex-col items-center px-8 text-center">
+              <span class="text-primary text-3xl font-bold">From $500/mo</span>
+              <span
+                class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+                >Bookkeeping</span
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Two Ways to Work With Us -->
-  <!-- AI-Generated -->
+  <!-- Trusted By logo strip -->
+  <LogoWall eyebrow="Trusted by finance teams across the U.S." />
+
+  <!-- Why Finance Leaders Choose Cayto -->
   <section class="section bg-light">
     <div class="container">
-      <div class="mx-auto mb-12 max-w-2xl text-center">
-        <h2 class="font-bold">Two Ways to Work With Us</h2>
-        <p class="text-text mt-4">
-          The right answer depends on whether you already have someone leading
-          accounting.
-        </p>
+      <div class="text-center">
+        {
+          /* AI-Generated — set:html required; markdownify returns an HTML string, not plain text */
+        }
+        <h2 set:html={markdownify(feature.title)} />
+        {/* End AI-Generated */}
       </div>
-      <div class="grid gap-8 md:grid-cols-2">
-        <ServiceDoor
-          accent="primary"
-          eyebrow="Dedicated Professionals"
-          title="Add capacity to the team you have"
-          forWhom="For companies with a Controller, VP Finance, or CFO who need more hands — AP, AR, staff and senior accountants, or specialized roles — without the cost or the search."
-          bullets={[
-            "A dedicated professional, exclusive to you, managed by you",
-            "Six-stage vetting including a CPA-level timed exam",
-            "14-day replacement guarantee, three-month initial term",
-          ]}
-          href="/staffing"
-          ctaLabel="Explore Staffing"
-        />
-        <ServiceDoor
-          accent="accent"
-          eyebrow="Managed Accounting"
-          title="Hand us the books entirely"
-          forWhom="For companies with no one leading accounting. We run the full cycle — transactions through financial statements — on an AI-native platform, reviewed by our U.S. team."
-          bullets={[
-            "Full-cycle bookkeeping through monthly financial statements",
-            "AI handles the busywork; a Cayto accountant approves every entry",
-            "From $500 per month, priced on transaction volume",
-          ]}
-          href="/managed-accounting"
-          ctaLabel="Explore Managed Accounting"
-        />
+      <div class="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          feature.features.map((item) => (
+            <div class="feature-card rounded-xl bg-white p-6 pb-10 text-center shadow-sm">
+              {item.icon && (
+                <Image
+                  class="mx-auto"
+                  alt=""
+                  src={item.icon}
+                  width={40}
+                  height={40}
+                />
+              )}
+              <div class="mt-4">
+                <h3 class="h5" set:html={markdownify(item.name)} />
+                <p class="mt-3">{item.content}</p>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
-  <!-- End AI-Generated -->
 
-  <!-- Trusted By logo strip -->
-  <LogoWall eyebrow="Trusted by companies across the U.S." />
+  <!-- What Our Clients Say -->
+  <Testimonials />
 
   <!-- Call to Action -->
   <Cta cta={call_to_action} />

@@ -37,16 +37,16 @@ const openings = [
 >
   <!-- Hero -->
   <!-- AI-Generated -->
-  <section class="section pb-[50px] bg-dot-grid border-y border-border">
+  <section class="section bg-dot-grid border-border border-y pb-[50px]">
     <div class="container">
       <div class="row text-center">
         <div class="mx-auto lg:col-8">
           <h1 class="font-bold">Careers at Cayto Group</h1>
           <p class="mt-4">
-            At Cayto Group, we are constantly innovating and building world class
-            financial solutions for our global partners. If you're passionate about
-            making an impact, join our talented team today and take charge of your
-            future with us.
+            At Cayto Group, we are constantly innovating and building world
+            class financial solutions for our global partners. If you're
+            passionate about making an impact, join our talented team today and
+            take charge of your future with us.
           </p>
         </div>
       </div>
@@ -70,12 +70,12 @@ const openings = [
         </div>
         <div class="mt-5 md:mt-0">
           <h2 class="font-bold">Life at Cayto</h2>
-          <p class="mt-4 text-text">
+          <p class="text-text mt-4">
             Life at Cayto is fast-paced, collaborative, and built for growth.
             You'll gain real exposure to international clients, work with modern
             tools and systems, and grow your career in a dynamic US work
-            environment. If you're eager to learn, take ownership, and be part of
-            a driven team, this is where you level up.
+            environment. If you're eager to learn, take ownership, and be part
+            of a driven team, this is where you level up.
           </p>
         </div>
       </div>
@@ -87,28 +87,34 @@ const openings = [
   <!-- AI-Generated -->
   <section class="section bg-light">
     <div class="container">
-      <div class="text-center mb-12">
+      <div class="mb-12 text-center">
         <h2 class="font-bold">Our Benefits</h2>
-        <p class="mt-3 mx-auto max-w-2xl text-text">
-          We take care of our people—because that's how great work happens. From
-          flexibility and global exposure to a supportive team culture, our
+        <p class="text-text mx-auto mt-3 max-w-2xl">
+          We take care of our people, because that's how great work happens.
+          From flexibility and global exposure to a supportive team culture, our
           benefits are designed to help you grow, perform, and thrive.
         </p>
       </div>
-      <div class="inset-panel rounded-xl bg-light p-8 md:p-12">
-        <ul class="grid gap-4 sm:grid-cols-2 list-none pl-0">
+      <div class="inset-panel bg-light rounded-xl p-8 md:p-12">
+        <ul class="grid list-none gap-4 pl-0 sm:grid-cols-2">
           {
             benefits.map((item) => (
               <li class="feature-card flex items-start gap-3 rounded-xl bg-white p-5">
                 <svg
-                  class="shrink-0 mt-0.5 text-primary"
+                  class="text-primary mt-0.5 shrink-0"
                   width="20"
                   height="20"
                   viewBox="0 0 20 20"
                   fill="none"
                   aria-hidden="true"
                 >
-                  <circle cx="10" cy="10" r="10" fill="currentColor" fill-opacity="0.12" />
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="10"
+                    fill="currentColor"
+                    fill-opacity="0.12"
+                  />
                   <path
                     d="M5.5 10.25l3 3 6-6"
                     stroke="currentColor"
@@ -131,18 +137,18 @@ const openings = [
   <!-- AI-Generated -->
   <section class="section">
     <div class="container">
-      <div class="text-center mb-12">
+      <div class="mb-12 text-center">
         <h2 class="font-bold">Our Job Openings</h2>
       </div>
       <div class="mx-auto max-w-3xl">
-        <div class="inset-panel rounded-xl bg-light p-8 md:p-12">
-          <ul class="space-y-4 list-none pl-0">
+        <div class="inset-panel bg-light rounded-xl p-8 md:p-12">
+          <ul class="list-none space-y-4 pl-0">
             {
               openings.map((role) => (
-                <li class="flex items-center justify-between gap-4 rounded-xl bg-white p-5 feature-card">
-                  <span class="font-semibold text-text-dark">{role}</span>
+                <li class="feature-card flex items-center justify-between gap-4 rounded-xl bg-white p-5">
+                  <span class="text-text-dark font-semibold">{role}</span>
                   <a
-                    class="btn btn-primary text-sm shrink-0"
+                    class="btn btn-primary shrink-0 text-sm"
                     href={`mailto:talent@caytogroup.com?subject=Application%20for%20${encodeURIComponent(role)}&body=${encodeURIComponent("Please attach your resume and hit send to apply.")}`}
                   >
                     Apply Now
@@ -156,5 +162,4 @@ const openings = [
     </div>
   </section>
   <!-- End AI-Generated -->
-
 </Base>
