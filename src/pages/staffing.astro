@@ -1,0 +1,410 @@
+---
+import { Image } from "astro:assets";
+import Base from "@/layouts/Base.astro";
+import Cta from "@/layouts/components/Cta.astro";
+import ProcessStep from "@/layouts/components/ProcessStep.astro";
+import Testimonials from "@/layouts/components/Testimonials.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+
+// AI-Generated
+/** staffing.astro — dedicated Staffing page with six-stage selection process
+ *  grid, talent tier tabs, security cards, and shared CTA. Bypasses the
+ *  generic [regular].astro route. Renamed from our-services.astro;
+ *  /our-services now 301s here via public/_redirects.
+ *
+ *  "Why Finance Leaders Choose Cayto" is hardcoded here rather than shared
+ *  with the homepage content entry: the Cost Savings card reads differently
+ *  on this page (staffing-specific framing) than on the homepage.
+ */
+const feature = {
+  title: "Why Finance Leaders Choose Cayto",
+  features: [
+    {
+      name: "Talent Pool",
+      icon: "/images/icons/icon-talent.svg",
+      content: "Over 70% of our professionals have Big 4 experience.",
+    },
+    {
+      name: "Thorough Vetting",
+      icon: "/images/icons/checkmark-circle.svg",
+      content:
+        "Every professional is interviewed, skills-tested, and reference and background checked before starting client work.",
+    },
+    {
+      name: "U.S. Oversight",
+      icon: "/images/icons/user-clock.svg",
+      content: "A U.S.-based principal is accountable for every engagement.",
+    },
+    {
+      name: "Cost Savings",
+      icon: "/images/icons/icon-savings.svg",
+      content:
+        "65%+ less than the U.S. equivalent. Fully burdened, no benefits, no recruiting fees.",
+    },
+    {
+      name: "14-Day Guarantee",
+      icon: "/images/icons/love.svg",
+      content:
+        "Not satisfied in the first 14 days? Cancel or replace at no charge.",
+    },
+    {
+      name: "Flexible Contracts",
+      icon: "/images/icons/icon-contract.svg",
+      content: "Three-month initial term, then month to month.",
+    },
+  ],
+};
+
+const selectionSteps = [
+  {
+    step: 1,
+    title: "Screening",
+    description:
+      "We review hundreds of resumes, filtering out candidates who do not meet our minimum requirements.",
+  },
+  {
+    step: 2,
+    title: "Assessment",
+    description:
+      "Our local team interviews candidates to validate technical skills, experience, and overall background.",
+  },
+  {
+    step: 3,
+    title: "Communication",
+    description:
+      "Candidates meet with our U.S. Principals for an evaluation of their critical thinking & communication skills.",
+  },
+  {
+    step: 4,
+    title: "Validation",
+    description:
+      "Remaining candidates take a timed, CPA exam-level assessment to further ensure their knowledge and expertise.",
+  },
+  {
+    step: 5,
+    title: "Verification",
+    description:
+      "We conduct background checks and validate prior employer references to ensure integrity and professionalism.",
+  },
+  {
+    step: 6,
+    title: "Onboarding",
+    description:
+      "Successful candidates join Cayto Group's bench, ready to interview for new client engagements.",
+  },
+];
+
+const tiers = [
+  {
+    label: "Tier 1",
+    roles: [
+      "A/P Clerk",
+      "A/R Specialist",
+      "Staff Accountant",
+      "Accounting Analyst",
+    ],
+    experience: ["3 to 5 years of public or private industry accounting"],
+    certifications: ["AAT", "CA (In-Progress)"],
+  },
+  {
+    label: "Tier 2",
+    roles: [
+      "Senior Accountant",
+      "GL Accountant",
+      "Financial Analyst",
+      "Revenue Accountant",
+    ],
+    experience: ["6 to 10 Years", "Mix of public and private", "Big 4"],
+    certifications: ["CA", "CMA", "CIMA", "ACCA"],
+  },
+  {
+    label: "Tier 3",
+    roles: [
+      "Accounting Manager",
+      "AP/AR Manager",
+      "FP&A Manager",
+      "Controller",
+    ],
+    experience: ["10+ Years", "Mix of public and private", "Big 4"],
+    certifications: ["CA", "CPA", "CMA", "CIMA", "ACCA"],
+  },
+];
+
+const skillSets = [
+  "Royalty Accountant",
+  "Inventory Accountant",
+  "Cost Accountant",
+  "Fund Accountant",
+  "Insurance Accountant",
+  "Not-for-profit Accountant",
+  "Property Management Accountant",
+  "Lease Accountant",
+];
+
+const cta = {
+  title: "Build a High-Performing Finance Team, Seamlessly.",
+  content:
+    "Integrate dedicated, skilled accounting professionals into your team. Cayto Group delivers vetted talent, tailored to your needs, for immediate impact.",
+  button: { enable: true, label: "Find Your Finance Expert", link: "/contact" },
+};
+// End AI-Generated
+---
+
+<Base
+  title="Offshore Accounting Staffing | Cayto Group"
+  meta_title="Offshore Accounting Staffing | Cayto Group"
+  description="Cayto Group places vetted, background-screened accounting and finance professionals on your team, at 65%+ less than an equivalent U.S. hire."
+>
+  <!-- Hero -->
+  <!-- AI-Generated -->
+  <section class="section bg-dot-grid pb-[50px]">
+    <div class="container">
+      <div class="row text-center">
+        <div class="mx-auto lg:col-8">
+          <h1 class="font-black whitespace-pre-line">
+            {"Top-Tier Accountants\nFraction of the Cost"}
+          </h1>
+          <p
+            class="mt-4"
+            set:html={markdownify(
+              "Cayto Group places vetted, background-screened accounting and finance professionals on your team. They work only for you, inside your systems, at 65%+ less than an equivalent U.S. hire.",
+            )}
+          />
+          <a class="btn btn-primary mt-4" href="/contact">
+            Schedule a Discovery Call
+          </a>
+
+          <div
+            class="border-border bg-light sm:divide-border mx-auto mt-10 flex flex-col items-center justify-center gap-4 rounded-xl border px-8 py-6 sm:flex-row sm:gap-0 sm:divide-x"
+          >
+            <div class="flex flex-col items-center px-8 text-center">
+              <span class="text-primary text-3xl font-bold">65%+</span>
+              <span
+                class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+                >Annual Cost Savings</span
+              >
+            </div>
+            <div class="flex flex-col items-center px-8 text-center">
+              <span class="text-primary text-3xl font-bold">14-Day</span>
+              <span
+                class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+                >Guarantee</span
+              >
+            </div>
+            <div class="flex flex-col items-center px-8 text-center">
+              <span class="text-primary text-3xl font-bold">3-Month</span>
+              <span
+                class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+                >Initial Contract</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- Testimonials -->
+  <Testimonials />
+
+  <!-- Our Selection Process -->
+  <!-- AI-Generated -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="mb-12 text-center">
+        <h2 class="font-bold">Our Selection Process</h2>
+        <p class="mt-3">
+          Every candidate who reaches your inbox has cleared all six stages.
+        </p>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          selectionSteps.map((s) => (
+            <ProcessStep
+              step={s.step}
+              title={s.title}
+              description={s.description}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- Talent Tiers — Tabs -->
+  <!-- AI-Generated -->
+  <section class="section">
+    <div class="container">
+      <div class="mb-12 text-center">
+        <h2 class="font-bold">Explore Our Talent by Role & Skill Set</h2>
+      </div>
+      <div class="tab">
+        <ul class="tab-nav justify-center">
+          {
+            tiers.map((tier, i) => (
+              <li class={`tab-nav-item${i === 0 ? " active" : ""}`}>
+                {tier.label}
+              </li>
+            ))
+          }
+        </ul>
+        {
+          tiers.map((tier, i) => (
+            <div class={`tab-content-panel${i === 0 ? " active" : ""}`}>
+              <div class="grid gap-8 pt-8 md:grid-cols-3">
+                <div>
+                  <h5 class="mb-3 font-bold">Typical Roles</h5>
+                  <ul class="list-none space-y-2 pl-0">
+                    {tier.roles.map((role) => (
+                      <li class="text-text before:bg-primary relative pl-5 before:absolute before:top-[10px] before:left-0 before:h-2 before:w-2 before:rounded-full before:content-['']">
+                        {role}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h5 class="mb-3 font-bold">Experience</h5>
+                  <ul class="list-none space-y-2 pl-0">
+                    {tier.experience.map((item) => (
+                      <li class="text-text before:bg-primary relative pl-5 before:absolute before:top-[10px] before:left-0 before:h-2 before:w-2 before:rounded-full before:content-['']">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h5 class="mb-3 font-bold">Certifications</h5>
+                  <ul class="list-none space-y-2 pl-0">
+                    {tier.certifications.map((cert) => (
+                      <li class="text-text before:bg-primary relative pl-5 before:absolute before:top-[10px] before:left-0 before:h-2 before:w-2 before:rounded-full before:content-['']">
+                        {cert}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Specialized Skill Sets -->
+      <div
+        class="inset-panel bg-light border-border mt-10 rounded-xl border p-8"
+      >
+        <h4 class="mb-4 font-bold">Specialized Skill Sets</h4>
+        <ul class="grid list-none gap-2 pl-0 sm:grid-cols-2 md:grid-cols-4">
+          {
+            skillSets.map((role) => (
+              <li class="text-text before:bg-primary relative pl-5 before:absolute before:top-[10px] before:left-0 before:h-2 before:w-2 before:rounded-full before:content-['']">
+                {role}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- Tab interactivity — progressive enhancement, no framework dependency -->
+  <!-- AI-Generated -->
+  <script>
+    /** Wires up tab navigation within .tab components.
+     *  Activates the clicked nav item and its corresponding content panel by index.
+     *
+     *  Runs both immediately (handles the case where this module script loads AFTER
+     *  astro:page-load has already fired for the current navigation) and on every
+     *  future astro:page-load (handles ClientRouter soft-navigations).
+     *  Using both guards against Astro module script / event timing edge cases.
+     */
+    function initTabs() {
+      const navItems = document.querySelectorAll<HTMLElement>(".tab-nav-item");
+      const panels =
+        document.querySelectorAll<HTMLElement>(".tab-content-panel");
+      if (!navItems.length) return;
+      navItems.forEach((item, index) => {
+        item.addEventListener("click", () => {
+          navItems.forEach((n) => n.classList.remove("active"));
+          panels.forEach((p) => p.classList.remove("active"));
+          item.classList.add("active");
+          panels[index]?.classList.add("active");
+        });
+      });
+    }
+
+    // Immediate call: handles when this script loads after astro:page-load
+    initTabs();
+    // Listener: handles every subsequent soft-navigation to this page
+    document.addEventListener("astro:page-load", initTabs);
+  </script>
+  <!-- End AI-Generated -->
+
+  <!-- Why Finance Leaders Choose Cayto -->
+  <!-- AI-Generated -->
+  <section class="section bg-light">
+    <div class="container">
+      <div class="text-center">
+        {
+          /* set:html required; markdownify returns an HTML string, not plain text */
+        }
+        <h2 set:html={markdownify(feature.title)} />
+      </div>
+      <div class="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          feature.features.map((item) => (
+            <div class="feature-card rounded-xl bg-white p-6 pb-10 text-center shadow-sm">
+              {item.icon && (
+                <Image
+                  class="mx-auto"
+                  alt=""
+                  src={item.icon}
+                  width={40}
+                  height={40}
+                />
+              )}
+              <div class="mt-4">
+                <h3 class="h5" set:html={markdownify(item.name)} />
+                <p class="mt-3">{item.content}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <!-- Modern Tooling — light AI touch, pre-empts the "won't AI replace this role" objection -->
+  <!-- AI-Generated -->
+  <section class="section bg-dot-grid">
+    <div class="container">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-primary text-xs font-semibold tracking-widest uppercase">
+          Modern Tooling
+        </p>
+        <h2 class="mt-3 font-bold">
+          Professionals who work the way finance works now
+        </h2>
+        <p class="text-text mt-6">
+          Our professionals are trained on AI-enabled workflows like automated
+          coding, continuous reconciliation and anomaly review, so their time
+          goes to judgment and analysis instead of data entry. They adapt to
+          your stack: NetSuite, Sage Intacct, QuickBooks Online, Xero, Bill.com
+          and whatever comes next.
+        </p>
+        <a
+          class="text-primary mt-6 inline-flex items-center gap-1 font-semibold hover:underline"
+          href="/bookkeeping"
+        >
+          Want your books handled instead? See Bookkeeping →
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- End AI-Generated -->
+
+  <Cta cta={cta} />
+</Base>

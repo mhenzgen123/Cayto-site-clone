@@ -1,11 +1,7 @@
 ---
 banner:
-  title: "Top-Tier Accountants\nFraction of the Cost"
-  content: "Cayto Group deploys fully vetted, background-screened accounting & finance professionals exclusively to your team — dedicated to your operations, integrated with your systems, at less than half the cost of an equivalent U.S. hire."
-  button:
-    enable: true
-    label: "Schedule a Discovery Call"
-    link: "/contact"
+  title: "Top-Tier Accounting.\nFraction of the Cost."
+  content: "Vetted, Big 4 trained accountants who join your team, or bookkeeping fully handled for you. Either way, you save 65%+ compared to doing it in-house."
 
 # feature
 feature:
@@ -13,32 +9,27 @@ feature:
   features:
     - name: "Talent Pool"
       icon: "/images/icons/icon-talent.svg"
-      content: "Over 70% of Cayto professionals have Big 4 accounting experience"
+      content: "Over 70% of our professionals have Big 4 experience."
     - name: "Thorough Vetting"
       icon: "/images/icons/checkmark-circle.svg"
-      content: "Professionals are interviewed, skills-tested, and reference & background checked before placement"
-    - name: "Dedicated Professionals"
+      content: "Every professional is interviewed, skills-tested, and reference and background checked before starting client work."
+    - name: "U.S. Oversight"
       icon: "/images/icons/user-clock.svg"
-      content: "Dedicated professionals operating as regular employees on your team — not shared with other Cayto clients"
+      content: "A U.S.-based principal is accountable for every engagement."
     - name: "Cost Savings"
       icon: "/images/icons/icon-savings.svg"
-      content: "Annual cost savings of 65%+ compared to equivalent U.S. talent — fully burdened, no benefits required"
+      content: "65%+ annual savings compared to U.S. talent, fully burdened."
     - name: "14-Day Guarantee"
       icon: "/images/icons/love.svg"
-      content: "Unsatisfied within the first 14 days? Replace or cancel at no charge"
+      content: "Not satisfied in the first 14 days? Cancel or replace at no charge."
     - name: "Flexible Contracts"
       icon: "/images/icons/icon-contract.svg"
-      content: "3-month initial contracts — month to month thereafter"
-
-# workflow
-workflow:
-  title: "How We Work"
-  description: "From your first call to an active professional on your team — most engagements are fully onboarded within 3–4 weeks. Our four-stage process is designed to be low-effort for you and high-precision in outcome."
+      content: "Three-month initial term, then month to month."
 
 # call_to_action
 call_to_action:
-  title: Build a High-Performing Finance Team, Seamlessly.
-  content: "Integrate dedicated, skilled accounting professionals into your team. Cayto Group delivers vetted talent, tailored to your needs, ready to make an immediate impact."
+  title: Build a High-Performing Finance Team.
+  content: "Need another accountant on your team, or want your books handled? We'll tell you which fits and what it costs."
   button:
     enable: true
     label: "Start the Conversation"

@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import Base from "@/layouts/Base.astro";
 import Cta from "@/layouts/components/Cta.astro";
+import LogoWall from "@/layouts/components/LogoWall.astro";
+import Testimonials from "@/layouts/components/Testimonials.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import { getEntry } from "astro:content";
 import type { CollectionEntry } from "astro:content";
@@ -13,202 +15,64 @@ const homepage = (await getEntry(
 const { banner, feature, call_to_action } = homepage.data;
 ---
 
-<Base>
+<Base
+  title="Cayto Group | Offshore Accounting Staffing & Bookkeeping"
+  meta_title="Cayto Group | Offshore Accounting Staffing & Bookkeeping"
+  description="Cayto Group places vetted offshore accounting professionals on your team and offers full-service bookkeeping, both at 65%+ less than doing it in-house."
+>
   <!-- banner -->
-  <section class="section pb-[50px] bg-dot-grid border-y border-border">
+  <section class="section bg-dot-grid pb-[50px]">
     <div class="container">
       <div class="row text-center">
         <div class="mx-auto lg:col-8">
-          <h1 class="whitespace-pre-line font-black">{banner?.title}</h1>
+          <h1 class="font-black whitespace-pre-line">{banner?.title}</h1>
           {
             banner?.content && (
               <p class="mt-4" set:html={markdownify(banner.content)} />
             )
           }
 
-          {
-            banner?.button?.enable && (
-              <a class="btn btn-primary mt-4" href={banner.button.link}>
-                {banner.button.label}
-              </a>
-            )
-          }
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a class="btn btn-primary" href="/staffing">Explore Staffing</a>
+            <a class="btn btn-outline-primary" href="/bookkeeping"
+              >Explore Bookkeeping</a
+            >
+          </div>
 
-          {
-            /* AI-Generated — stat bar anchors the hero visually and provides immediate social proof */
-          }
           <div
-            class="mx-auto mt-10 flex flex-col items-center justify-center gap-4 rounded-xl border border-border bg-light px-8 py-6 sm:flex-row sm:gap-0 sm:divide-x sm:divide-border"
+            class="border-border bg-light sm:divide-border mx-auto mt-10 flex flex-col items-center justify-center gap-4 rounded-xl border px-8 py-6 sm:flex-row sm:gap-0 sm:divide-x"
           >
             <div class="flex flex-col items-center px-8 text-center">
-              <span class="text-3xl font-bold text-primary">65%+</span>
+              <span class="text-primary text-3xl font-bold">65%+</span>
               <span
-                class="mt-1 text-sm font-semibold uppercase tracking-wide text-text"
+                class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
                 >Annual Cost Savings</span
               >
             </div>
             <div class="flex flex-col items-center px-8 text-center">
-              <span class="text-3xl font-bold text-primary">14-Day</span>
+              <span class="text-primary text-3xl font-bold">14-Day</span>
               <span
-                class="mt-1 text-sm font-semibold uppercase tracking-wide text-text"
-                >Replacement Guarantee</span
+                class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+                >Guarantee</span
               >
             </div>
             <div class="flex flex-col items-center px-8 text-center">
-              <span class="text-3xl font-bold text-primary">3-Month</span>
+              <span class="text-primary text-3xl font-bold">From $500/mo</span>
               <span
-                class="mt-1 text-sm font-semibold uppercase tracking-wide text-text"
-                >Initial Contract Only</span
+                class="text-text mt-1 text-sm font-semibold tracking-wide uppercase"
+                >Bookkeeping</span
               >
             </div>
           </div>
-          {/* End AI-Generated */}
-
-          {
-            banner?.image && (
-              <Image
-                class="mx-auto mt-12"
-                src={banner?.image}
-                width={750}
-                height={390}
-                alt="banner image"
-              />
-            )
-          }
         </div>
       </div>
     </div>
   </section>
 
   <!-- Trusted By logo strip -->
-  {
-    /* AI-Generated — positioned immediately after the hero stat bar, before Features, for maximum social-proof impact */
-  }
-  <section class="pt-10 pb-10">
-    <div class="container">
-      <p
-        class="mb-8 text-center text-xs font-semibold uppercase tracking-widest text-text"
-      >
-        Trusted by finance teams across the U.S.
-      </p>
-      {
-        /*
-        flex-wrap with justify-center centers each row independently,
-        including the partial last row — grid cannot do this.
-      */
-      }
-      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-6">
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/olukai.jpg"
-          alt="OluKai"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/Kaenon.jpg"
-          alt="Kaenon"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/Melin.png"
-          alt="Melin"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/Exceleration-Music.png"
-          alt="Exceleration Music"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/zeevo.jpg"
-          alt="Zeevo"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/fourloko.png"
-          alt="Four Loko"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/best-music-co-logo.png"
-          alt="Best Music Co"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/Bravo.jpg"
-          alt="Bravo"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/mill-logo.png"
-          alt="Mill"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/Reeis-1.jpg"
-          alt="Reeis"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/we-the-wild-logo.png"
-          alt="We The Wild"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/seel-logo.png"
-          alt="Seel"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/vendoroo-logo.png"
-          alt="Vendoroo"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/northward-logo.png"
-          alt="Northward"
-          width="120"
-          height="40"
-        />
-        <img
-          class="client-logo max-h-[68px] w-auto"
-          src="/images/logos/harvest-strategy-logo.png"
-          alt="Harvest Strategy Group"
-          width="120"
-          height="40"
-        />
-      </div>
-    </div>
-  </section>
-  {/* End AI-Generated */}
+  <LogoWall eyebrow="Trusted by finance teams across the U.S." />
 
-  <!-- Features -->
+  <!-- Why Finance Leaders Choose Cayto -->
   <section class="section bg-light">
     <div class="container">
       <div class="text-center">
@@ -242,150 +106,9 @@ const { banner, feature, call_to_action } = homepage.data;
     </div>
   </section>
 
-  <!-- /End service -->
-
-  {/* AI-Generated */}
-  <!-- Testimonials -->
-  <section class="section bg-dot-grid border-y border-border">
-    <div class="container">
-      <div class="text-center mb-12">
-        <h2 class="font-bold">What Our Clients Say</h2>
-      </div>
-      <div class="grid gap-8 md:grid-cols-3">
-        <div
-          class="rounded-xl bg-white p-8 flex flex-col testimonial-card border-t-4 border-primary"
-        >
-          <p
-            class="text-6xl font-bold text-primary leading-none mb-2 select-none"
-            aria-hidden="true"
-          >
-            &ldquo;
-          </p>
-          <p class="leading-relaxed flex-1 text-text">
-            Their work has been so impressive that we have added two more people
-            to our accounting team to build out the team. They're critical to
-            how we're growing our finance department.
-          </p>
-          <div class="mt-8 flex items-center justify-between gap-4">
-            <div class="flex items-center gap-4">
-              <Image
-                src="/images/people/Eric-Allington-SVP-Finance-1.jpg"
-                width={56}
-                height={56}
-                alt="Eric Allington"
-                class="rounded-full object-cover w-14 h-14 shrink-0"
-              />
-              <div>
-                <p class="font-bold text-text-dark">Eric Allington</p>
-                <p class="text-sm text-text">SVP Finance</p>
-                <p class="text-sm text-text/60">Bravo Store Systems</p>
-              </div>
-            </div>
-            <img
-              src="/images/logos/Bravo-Store.jpg"
-              alt="Bravo Store Systems"
-              class="max-h-[36px] w-auto object-contain shrink-0 opacity-70"
-            />
-          </div>
-        </div>
-        <div
-          class="rounded-xl bg-white p-8 flex flex-col testimonial-card border-t-4 border-primary"
-        >
-          <p
-            class="text-6xl font-bold text-primary leading-none mb-2 select-none"
-            aria-hidden="true"
-          >
-            &ldquo;
-          </p>
-          <p class="leading-relaxed flex-1 text-text">
-            Not only are the individuals provided by Cayto highly skilled and
-            experienced in their respective fields, but they also demonstrate
-            exceptional professionalism and work ethic. Their commitment to
-            excellence has greatly contributed to the success of our accounting
-            team.
-          </p>
-          <div class="mt-8 flex items-center justify-between gap-4">
-            <div class="flex items-center gap-4">
-              <Image
-                src="/images/people/Jill-Espinola-VP-of-Accounting.jpg"
-                width={56}
-                height={56}
-                alt="Jill Espinola"
-                class="rounded-full object-cover w-14 h-14 shrink-0"
-              />
-              <div>
-                <p class="font-bold text-text-dark">Jill Espinola</p>
-                <p class="text-sm text-text">VP of Accounting</p>
-                <p class="text-sm text-text/60">OluKai</p>
-              </div>
-            </div>
-            <img
-              src="/images/logos/olukai.jpg"
-              alt="OluKai"
-              class="max-h-[36px] w-auto object-contain shrink-0 opacity-70"
-            />
-          </div>
-        </div>
-        <div
-          class="rounded-xl bg-white p-8 flex flex-col testimonial-card border-t-4 border-primary"
-        >
-          <p
-            class="text-6xl font-bold text-primary leading-none mb-2 select-none"
-            aria-hidden="true"
-          >
-            &ldquo;
-          </p>
-          <p class="leading-relaxed flex-1 text-text">
-            Cayto Group has shown that offshore accounting staffing is far more
-            than a stopgap — it can be a true strategic advantage. Their
-            professionalism, responsiveness, and capacity to deliver measurable
-            process improvements have made them an invaluable extension of our
-            finance function.
-          </p>
-          <div class="mt-8 flex items-center justify-between gap-4">
-            <div class="flex items-center gap-4">
-              <Image
-                src="/images/people/Craig-Dais-CFO.png"
-                width={56}
-                height={56}
-                alt="Craig Dais"
-                class="rounded-full object-cover w-14 h-14 shrink-0"
-              />
-              <div>
-                <p class="font-bold text-text-dark">Craig Dais</p>
-                <p class="text-sm text-text">CFO</p>
-                <p class="text-sm text-text/60">Navidea</p>
-              </div>
-            </div>
-            <img
-              src="/images/logos/navidea-1.jpg"
-              alt="Navidea"
-              class="max-h-[36px] w-auto object-contain shrink-0 opacity-70"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  {/* End AI-Generated */}
+  <!-- What Our Clients Say -->
+  <Testimonials />
 
   <!-- Call to Action -->
   <Cta cta={call_to_action} />
 </Base>
-
-<script>
-  // AI-Generated
-  // mix-blend-mode breaks after ClientRouter view transitions because the incoming
-  // page renders inside a ::view-transition-new compositing layer with an isolated
-  // white background — multiply blends against white, not the section's gray.
-  // astro:page-load fires after the transition settles (unlike DOMContentLoaded
-  // which only fires once). Toggling mix-blend-mode inline forces a repaint so
-  // the browser re-composites against the real section background.
-  document.addEventListener("astro:page-load", () => {
-    document.querySelectorAll<HTMLElement>(".client-logo").forEach((logo) => {
-      logo.style.mixBlendMode = "normal";
-      requestAnimationFrame(() => logo.style.removeProperty("mix-blend-mode"));
-    });
-  });
-  // End AI-Generated
-</script>
