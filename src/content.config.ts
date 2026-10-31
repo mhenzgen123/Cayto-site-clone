@@ -86,17 +86,22 @@ const contactCollection = defineCollection({
   }),
 });
 
-// FAQ collection schema
+// FAQ collection schema — grouped into tabbed sets, one per service line
 const faqCollection = defineCollection({
   loader: glob({ pattern: "**/-*.{md,mdx}", base: "src/content/faq" }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
     draft: z.boolean(),
-    faqs: z.array(
+    groups: z.array(
       z.object({
-        title: z.string(),
-        answer: z.string(),
+        label: z.string(),
+        faqs: z.array(
+          z.object({
+            title: z.string(),
+            answer: z.string(),
+          }),
+        ),
       }),
     ),
   }),

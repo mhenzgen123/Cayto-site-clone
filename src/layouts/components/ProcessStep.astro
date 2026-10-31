@@ -1,26 +1,30 @@
 ---
 // AI-Generated
-/** ProcessStep — renders a single numbered step card for the selection process grid.
- *  Props: step (display number), title (step name), description (body copy).
+/** ProcessStep — numbered step card.
+ *  Props: step, title, description, accent ("primary" | "accent").
  */
 interface Props {
   step: number;
   title: string;
   description: string;
+  accent?: "primary" | "accent";
 }
-const { step, title, description } = Astro.props;
+const { step, title, description, accent = "primary" } = Astro.props;
+const numberColor = accent === "accent" ? "text-accent" : "text-primary";
 // End AI-Generated
 ---
 
 <!-- AI-Generated -->
-<div class="feature-card rounded-xl bg-white p-6 pb-10 shadow-sm relative overflow-hidden">
+<div
+  class="feature-card relative overflow-hidden rounded-xl bg-white p-6 pb-10 shadow-sm"
+>
   <span
-    class="absolute top-2 right-4 text-[80px] font-bold text-primary opacity-10 leading-none select-none"
+    class={`absolute top-2 right-4 text-[80px] font-bold ${numberColor} opacity-10 leading-none select-none`}
     aria-hidden="true">{step}</span
   >
   <div class="relative">
     <p class="h5">{title}</p>
-    <p class="mt-3 text-text">{description}</p>
+    <p class="text-text mt-3">{description}</p>
   </div>
 </div>
 <!-- End AI-Generated -->

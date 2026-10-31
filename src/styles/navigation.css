@@ -45,3 +45,57 @@
 .nav-link-active {
   @apply text-primary;
 }
+
+/* AI-Generated */
+/*
+ * Dropdown menu for multi-service navigation. Header.astro already renders these
+ * class names for any menu entry with hasChildren:true, but no styles existed —
+ * without this block the Services dropdown renders as unstyled inline text.
+ *
+ * Show/hide is driven by Tailwind classes in Header.astro
+ * (md:invisible md:opacity-0 md:group-hover:visible md:group-hover:opacity-100),
+ * so this block supplies surface, spacing, and stacking only.
+ */
+.nav-dropdown-list {
+  @apply min-w-[220px] rounded-[8px] py-2 md:top-full md:left-0 md:z-30;
+  background: rgba(247, 249, 250, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 0 40px rgba(25, 28, 29, 0.1);
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.nav-dropdown-item {
+  @apply list-none;
+}
+
+.nav-dropdown-link {
+  @apply px-5 py-2.5 font-primary text-base font-semibold text-text-dark transition;
+  @apply hover:text-primary;
+  text-align: left;
+}
+
+/* Bridges the gap between the parent nav item and the panel so the pointer can
+ * travel down without the hover state dropping out. */
+.nav-dropdown > .nav-dropdown-list::before {
+  content: "";
+  @apply absolute -top-2 left-0 h-2 w-full;
+}
+
+/* Mobile: the panel renders inline inside the stacked menu, so drop the
+ * floating surface treatment and indent instead. Also force it always visible
+ * since group-hover is unreliable on touch. */
+@media (max-width: 767px) {
+  .nav-dropdown-list {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    display: block !important;
+    @apply py-0;
+  }
+  .nav-dropdown-link {
+    @apply py-2 text-center;
+  }
+}
+/* End AI-Generated */

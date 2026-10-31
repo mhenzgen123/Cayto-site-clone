@@ -7,38 +7,62 @@ import { getEntry } from "astro:content";
 
 const entry = (await getEntry(
   "contact",
-  "-index"
+  "-index",
 )) as CollectionEntry<"contact">;
 const { title, meta_title, description, info } = entry.data;
+
+// AI-Generated
+/** Single Calendly event covering both service lines. Which service the
+ *  visitor wants is captured via a Calendly custom question rather than a
+ *  page-level selector.
+ */
+const calendlyUrl =
+  "https://calendly.com/mikehenzgen/caytogroup?text_color=000a48&primary_color=249ebc";
+// End AI-Generated
 ---
 
 <Base title={title} meta_title={meta_title} description={description}>
   <Fragment slot="head">
     <link rel="preconnect" href="https://assets.calendly.com" />
     <link rel="preconnect" href="https://calendly.com" />
-    <link rel="prefetch" href="https://assets.calendly.com/assets/external/widget.js" as="script" />
+    <link
+      rel="prefetch"
+      href="https://assets.calendly.com/assets/external/widget.js"
+      as="script"
+    />
   </Fragment>
   <!-- Scheduling Embed -->
   <!-- AI-Generated -->
-  <section class="section pb-[50px] bg-dot-grid border-y border-border">
+  <section class="section bg-dot-grid pb-[50px]">
     <div class="container">
-      <div class="text-center mb-8">
+      <div class="mb-8 text-center">
         <h1 class="font-bold" set:html={markdownify(title)} />
-        <p class="mt-3 text-text" set:html={markdownify(description)} />
+        <p class="text-text mt-3" set:html={markdownify(description)} />
       </div>
-      {/* Calendly inline embed */}
-      <div class="calendly-inline-widget" data-url="https://calendly.com/mikehenzgen/caytogroup?text_color=000a48&primary_color=249ebc" style="min-width:320px;height:700px;"></div>
-      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+      <div
+        class="calendly-inline-widget"
+        data-url={calendlyUrl}
+        style="min-width:320px;height:700px;"
+      >
+      </div>
+      <script
+        type="text/javascript"
+        src="https://assets.calendly.com/assets/external/widget.js"
+        async></script>
       <script>
-        // On ClientRouter soft navigations the Calendly script doesn't re-run,
-        // so the widget div is never scanned. Re-init manually on every page-load.
-        document.addEventListener("astro:page-load", () => {
-          const widget = document.querySelector(".calendly-inline-widget");
-          if (!widget) return;
-          if (window.Calendly) {
-            window.Calendly.initInlineWidgets();
-          }
-        });
+        /** On ClientRouter soft navigation the Calendly script doesn't re-run,
+         *  so the widget div is never scanned. Re-init manually on every
+         *  page-load, and once immediately in case this script loads after
+         *  astro:page-load has already fired.
+         */
+        function initCalendly() {
+          // @ts-ignore — Calendly is injected by an external script
+          if (window.Calendly) window.Calendly.initInlineWidgets();
+        }
+
+        initCalendly();
+        document.addEventListener("astro:page-load", initCalendly);
       </script>
       {/* End Calendly embed */}
     </div>
@@ -48,13 +72,14 @@ const { title, meta_title, description, info } = entry.data;
   <!-- AI-Generated — Email Option Showcase -->
   <section class="section bg-body">
     <div class="container">
-      <div class="col-12 text-center mb-10">
+      <div class="col-12 mb-10 text-center">
         <h3 class="font-bold">Reach Out Directly</h3>
-        <p class="mt-3 text-text max-w-2xl mx-auto">
-          Prefer to write? Send us an email and we&apos;ll get back to you within one business day.
+        <p class="text-text mx-auto mt-3 max-w-2xl">
+          Prefer to write? Send us an email and we&apos;ll get back to you
+          within one business day.
         </p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+      <div class="mx-auto grid max-w-3xl grid-cols-1 gap-6 md:grid-cols-2">
         {
           info?.contacts?.map((contact) => {
             const parts = contact.split(": ");
@@ -62,19 +87,36 @@ const { title, meta_title, description, info } = entry.data;
             const emailMarkdown = parts.slice(1).join(": ");
             const match = emailMarkdown.match(/\[([^\]]+)\]\(mailto:([^)]+)\)/);
             const emailText = match ? match[1] : emailMarkdown;
-            const emailHref = match ? `mailto:${match[2]}` : `mailto:${emailMarkdown}`;
+            const emailHref = match
+              ? `mailto:${match[2]}`
+              : `mailto:${emailMarkdown}`;
             return (
               <a
                 href={emailHref}
-                class="feature-card bg-white rounded-lg p-8 text-center no-underline group block"
+                class="feature-card group block rounded-lg bg-white p-8 text-center no-underline"
               >
-                <div class="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                <div class="bg-primary/10 text-primary mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <>
+                      <rect width="20" height="16" x="2" y="4" rx="2" />
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </>
+                  </svg>
                 </div>
-                <p class="text-sm uppercase tracking-widest text-text mb-2 font-medium">
+                <p class="text-text mb-2 text-sm font-medium tracking-widest uppercase">
                   {label}
                 </p>
-                <p class="text-text-dark text-lg font-semibold group-hover:text-primary transition-colors">
+                <p class="text-text-dark group-hover:text-primary text-lg font-semibold transition-colors">
                   {emailText}
                 </p>
               </a>
@@ -85,5 +127,4 @@ const { title, meta_title, description, info } = entry.data;
     </div>
   </section>
   <!-- End AI-Generated -->
-
 </Base>

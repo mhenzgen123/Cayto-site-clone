@@ -1,0 +1,76 @@
+---
+// AI-Generated
+/** LogoWall — shared "Trusted by" client logo strip.
+ *  Co-locates the mix-blend-mode repaint script so any page using this
+ *  component gets the ClientRouter fix automatically.
+ *  Props: eyebrow (label above the strip).
+ */
+interface Props {
+  eyebrow?: string;
+}
+const { eyebrow = "Trusted by finance teams across the U.S." } = Astro.props;
+
+const logos = [
+  { src: "/images/logos/olukai.jpg", alt: "OluKai" },
+  { src: "/images/logos/Kaenon.jpg", alt: "Kaenon" },
+  { src: "/images/logos/Melin.png", alt: "Melin" },
+  { src: "/images/logos/Exceleration-Music.png", alt: "Exceleration Music" },
+  { src: "/images/logos/zeevo.jpg", alt: "Zeevo" },
+  { src: "/images/logos/fourloko.png", alt: "Four Loko" },
+  { src: "/images/logos/best-music-co-logo.png", alt: "Best Music Co" },
+  { src: "/images/logos/Bravo.jpg", alt: "Bravo" },
+  { src: "/images/logos/mill-logo.png", alt: "Mill" },
+  { src: "/images/logos/Reeis-1.jpg", alt: "Reeis" },
+  { src: "/images/logos/we-the-wild-logo.png", alt: "We The Wild" },
+  { src: "/images/logos/seel-logo.png", alt: "Seel" },
+  { src: "/images/logos/vendoroo-logo.png", alt: "Vendoroo" },
+  { src: "/images/logos/northward-logo.png", alt: "Northward" },
+  {
+    src: "/images/logos/harvest-strategy-logo.png",
+    alt: "Harvest Strategy Group",
+  },
+];
+// End AI-Generated
+---
+
+<!-- AI-Generated -->
+<section class="pt-10 pb-10">
+  <div class="container">
+    <p
+      class="text-text mb-8 text-center text-xs font-semibold tracking-widest uppercase"
+    >
+      {eyebrow}
+    </p>
+    {
+      /* flex-wrap + justify-center centers each row independently, including a
+        partial final row — CSS grid cannot do this. */
+    }
+    <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-6">
+      {
+        logos.map((l) => (
+          <img
+            class="client-logo max-h-[68px] w-auto"
+            src={l.src}
+            alt={l.alt}
+            width="120"
+            height="40"
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  // mix-blend-mode breaks after ClientRouter view transitions because the incoming
+  // page renders inside a ::view-transition-new compositing layer with an isolated
+  // background. astro:page-load fires after the transition settles; toggling the
+  // property inline forces a re-composite against the real section background.
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll<HTMLElement>(".client-logo").forEach((logo) => {
+      logo.style.mixBlendMode = "normal";
+      requestAnimationFrame(() => logo.style.removeProperty("mix-blend-mode"));
+    });
+  });
+</script>
+<!-- End AI-Generated -->

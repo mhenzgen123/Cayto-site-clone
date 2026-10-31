@@ -1,0 +1,56 @@
+---
+// AI-Generated
+/** ServiceDoor — one of the two service-line entry cards on the homepage.
+ *  Props: eyebrow, title, forWhom, bullets[], href, ctaLabel,
+ *         accent ("primary" | "accent").
+ */
+interface Props {
+  eyebrow: string;
+  title: string;
+  forWhom: string;
+  bullets: string[];
+  href: string;
+  ctaLabel: string;
+  accent?: "primary" | "accent";
+}
+const {
+  eyebrow,
+  title,
+  forWhom,
+  bullets,
+  href,
+  ctaLabel,
+  accent = "primary",
+} = Astro.props;
+
+const isAccent = accent === "accent";
+const topBorder = isAccent ? "border-accent" : "border-primary";
+const eyebrowColor = isAccent ? "text-accent" : "text-primary";
+const bulletColor = isAccent ? "before:bg-accent" : "before:bg-primary";
+const btnClass = isAccent ? "btn btn-accent" : "btn btn-primary";
+// End AI-Generated
+---
+
+<!-- AI-Generated -->
+<div
+  class={`feature-card flex flex-col rounded-xl border-t-4 ${topBorder} bg-white p-8`}
+>
+  <p class={`text-xs font-semibold uppercase tracking-widest ${eyebrowColor}`}>
+    {eyebrow}
+  </p>
+  <h3 class="mt-3 font-bold">{title}</h3>
+  <p class="text-text mt-3">{forWhom}</p>
+  <ul class="mt-6 mb-8 list-none space-y-3 pl-0">
+    {
+      bullets.map((b) => (
+        <li
+          class={`text-text relative pl-5 before:absolute before:top-[10px] before:left-0 before:h-2 before:w-2 before:rounded-full ${bulletColor} before:content-['']`}
+        >
+          {b}
+        </li>
+      ))
+    }
+  </ul>
+  <a class={`${btnClass} mt-auto self-start`} href={href}>{ctaLabel}</a>
+</div>
+<!-- End AI-Generated -->

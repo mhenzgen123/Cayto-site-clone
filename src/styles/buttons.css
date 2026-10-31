@@ -41,3 +41,36 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(26, 122, 148, 0.1);
 }
 /* End AI-Generated */
+
+/* AI-Generated */
+/*
+ * .btn-accent — navy gradient sibling of .btn-primary, reserved for the
+ * Managed Accounting service line. Same geometry and interaction model as
+ * .btn-primary (4px radius, shadow collapses on hover) so the two read as
+ * one system in two colors.
+ */
+.btn-accent {
+  @apply relative z-[1] rounded-[4px] border-transparent text-white transition;
+  background: linear-gradient(135deg, #000a48, #0b2472);
+  box-shadow: 0 0 40px rgba(0, 10, 72, 0.15);
+}
+
+.btn-accent:hover {
+  background: linear-gradient(135deg, #000733, #071a55);
+  box-shadow: 0 0 24px rgba(0, 10, 72, 0.08);
+}
+
+/*
+ * .btn-on-dark — outline button for use inside .bg-accent-panel, where both
+ * .btn-primary and .btn-accent lose contrast against the navy field.
+ */
+.btn-on-dark {
+  @apply relative rounded-[4px] bg-transparent text-white transition;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.btn-on-dark:hover {
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+/* End AI-Generated */
